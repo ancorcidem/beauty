@@ -9,5 +9,7 @@ namespace Beauty.Business
         public virtual string Name { get; set; }
 
         public int Age { get; set; }
+
+        public int Weight { get; set; }
     }
 }

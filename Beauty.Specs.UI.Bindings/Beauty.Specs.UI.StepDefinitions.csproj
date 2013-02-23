@@ -84,6 +84,7 @@
   <ItemGroup>
     <Compile Include="BeautyDbContextInitalization.cs" />
     <Compile Include="BeautyDbInitializer.cs" />
+    <Compile Include="BeautyFactory.cs" />
     <Compile Include="BeautyMockRepository.cs" />
     <Compile Include="BeautyStepDefinition.cs" />
     <Compile Include="InMemoryDbSet.cs" />

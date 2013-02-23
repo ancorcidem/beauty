@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 
 namespace Beauty.Business
 {
@@ -14,22 +12,18 @@ namespace Beauty.Business
             _repository = repository;
         }
 
-        private readonly List<Expression<Func<Beauty, bool>>> _criterias =
-            new List<Expression<Func<Beauty, bool>>>();
+        private readonly List<Criteria> _criterias =
+            new List<Criteria>();
 
-        public void Add(Expression<Func<Beauty, bool>> expression)
+        public void Add(Criteria criteria)
         {
-            _criterias.Add(expression);
+            _criterias.Add(criteria);
         }
 
         public IEnumerable<Beauty> Find()
         {
             IQueryable<Beauty> queryable = _repository.Beauties;
-            foreach (var criteria in _criterias)
-            {
-                queryable = queryable.Where(criteria);
-            }
-
+            _criterias.ForEach(x => queryable = x.ApplyOn(queryable));
             return queryable.Select(beauty => beauty);
         }
     }
