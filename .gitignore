@@ -1,6 +1,6 @@
 Thumbs.db
 *.obj
-*.exe
+Beauty*/**/*.exe
 *.pdb
 *.user
 *.aps
@@ -19,7 +19,7 @@ Thumbs.db
 *.log
 [Bb]in
 [Dd]ebug*/
-*.lib
+Beauty*/**/*.lib
 *.sbr
 obj/
 [Rr]elease*/
