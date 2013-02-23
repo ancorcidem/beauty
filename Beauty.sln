@@ -7,14 +7,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beauty.UI.WinForms", "Beaut
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beauty.Business", "Beauty.Business\Beauty.Business.csproj", "{F05B1984-914F-401A-93CA-EAA4E72359F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beauty.Specs", "Beauty.Specs\Beauty.Specs.csproj", "{EB73F03B-F5CC-4109-B9E1-47D32D0B3FA3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beauty.Specs.UI.StepDefinitions", "Beauty.Specs.UI.Bindings\Beauty.Specs.UI.StepDefinitions.csproj", "{BE637986-8151-4D6F-B26D-9A7C5676B19A}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{1DC33302-2849-44E1-AF07-959B1CDEA737}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Specs", "Specs", "{6EC74DFE-3FF4-45EC-A4EC-225BB512037F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beauty.Specs.Common", "Beauty.Specs.Common\Beauty.Specs.Common.csproj", "{EB73F03B-F5CC-4109-B9E1-47D32D0B3FA3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beauty.UI.Specs", "Beauty.UI.Specs\Beauty.UI.Specs.csproj", "{BE637986-8151-4D6F-B26D-9A7C5676B19A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beauty.Business.Specs", "Beauty.Business.Specs\Beauty.Business.Specs.csproj", "{31072B26-ADA3-42C9-888C-1C2A0C685E5C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,8 +46,17 @@ Global
 		{BE637986-8151-4D6F-B26D-9A7C5676B19A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE637986-8151-4D6F-B26D-9A7C5676B19A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE637986-8151-4D6F-B26D-9A7C5676B19A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31072B26-ADA3-42C9-888C-1C2A0C685E5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31072B26-ADA3-42C9-888C-1C2A0C685E5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31072B26-ADA3-42C9-888C-1C2A0C685E5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31072B26-ADA3-42C9-888C-1C2A0C685E5C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EB73F03B-F5CC-4109-B9E1-47D32D0B3FA3} = {6EC74DFE-3FF4-45EC-A4EC-225BB512037F}
+		{BE637986-8151-4D6F-B26D-9A7C5676B19A} = {6EC74DFE-3FF4-45EC-A4EC-225BB512037F}
+		{31072B26-ADA3-42C9-888C-1C2A0C685E5C} = {6EC74DFE-3FF4-45EC-A4EC-225BB512037F}
 	EndGlobalSection
 EndGlobal
