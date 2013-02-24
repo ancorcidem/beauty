@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity;
 using Beauty.Business;
-using Beauty.UI.Specs.FakeDb;
+using Beauty.Specs.Common.FakeDb;
 
 
 namespace Beauty.UI.Specs

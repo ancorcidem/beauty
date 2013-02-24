@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Beauty.Business;
+using System.Text;
+using Beauty.Business.Specs.Properties;
 using Beauty.Specs.Common;
+using CsQuery;
 using FluentAssertions;
+using Newtonsoft.Json.Linq;
 using StructureMap;
 using TechTalk.SpecFlow;
 
-namespace Beauty.UI.Specs
+namespace Beauty.Business.Specs
 {
     [Binding]
     public class BeautyStepDefinition
@@ -17,10 +20,19 @@ namespace Beauty.UI.Specs
         {
             var context = ObjectFactory.GetInstance<IBeautyRepository>();
 
-            var factrory = ObjectFactory.GetInstance<BeautyFactory>();
+            dynamic girlProfilePrototype = JObject.Parse(Encoding.UTF8.GetString(Resources.GirlPrototype));
+            CQ profile = CQ.Create(girlProfilePrototype.log.entries[0].response.content.text);
+            profile.Select("html body table tbody tr td table tbody tr td");
+
+            //prototype.log.entries[0].response.content.text
+            //string response = prototype.entries.response;
+
+
+
+            var factory = ObjectFactory.GetInstance<BeautyFactory>();
             foreach (var age in ages.ToArrayOf<int>())
             {
-                context.Beauties.Add(factrory.Create(age));
+                context.Beauties.Add(factory.Create(age));
             }
             context.SaveChanges();
         }
@@ -60,10 +72,10 @@ namespace Beauty.UI.Specs
         public void WhenSearchForBeautyWhoWeightBetweenAndKg(int weightFromValue, int weightToValue)
         {
             var criterias = ObjectFactory.GetInstance<CriteriaCollection>();
-            WeightFrom weightFrom = (Weight)weightFromValue;
+            WeightFrom weightFrom = (Weight) weightFromValue;
             criterias.Add(weightFrom);
 
-            WeightTo weightTo = (Weight)weightToValue;
+            WeightTo weightTo = (Weight) weightToValue;
             criterias.Add(weightTo);
 
             ScenarioContext.Current.Set(criterias);

@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Beauty.UI.Specs.FakeDb
+namespace Beauty.Specs.Common.FakeDb
 {
     /// <summary>
     /// Provides helper methods for the InMemoryDbSet.

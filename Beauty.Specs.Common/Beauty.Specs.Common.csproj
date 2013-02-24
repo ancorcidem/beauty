@@ -69,12 +69,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BeautyFactory.cs" />
+    <Compile Include="FakeDb\FakeDbSet.cs" />
+    <Compile Include="FakeDb\InMemoryDbSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchByParameters.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SearchByParameters.feature</DependentUpon>
     </Compile>
+    <Compile Include="StringTransformationExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -117,6 +120,7 @@
       <Name>Beauty.Business</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

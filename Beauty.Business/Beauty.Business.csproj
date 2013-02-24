@@ -51,12 +51,14 @@
     <Compile Include="AgeTo.cs" />
     <Compile Include="Beauty.cs" />
     <Compile Include="BeautyDbContext.cs" />
+    <Compile Include="BeautyRepository.cs" />
     <Compile Include="Criteria.cs" />
     <Compile Include="CriteriaCollection.cs" />
     <Compile Include="IBeautyRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Weight.cs" />
     <Compile Include="WeightFrom.cs" />
+    <Compile Include="WeightTo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
