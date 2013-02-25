@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Beauty.Business.Specs.Properties;
 using Beauty.Specs.Common;
-using CsQuery;
 using FluentAssertions;
-using Newtonsoft.Json.Linq;
 using StructureMap;
 using TechTalk.SpecFlow;
 
@@ -20,17 +16,8 @@ namespace Beauty.Business.Specs
         {
             var context = ObjectFactory.GetInstance<IBeautyRepository>();
 
-            dynamic girlProfilePrototype = JObject.Parse(Encoding.UTF8.GetString(Resources.GirlPrototype));
-            CQ profile = CQ.Create(girlProfilePrototype.log.entries[0].response.content.text);
-            profile.Select("html body table tbody tr td table tbody tr td");
-
-            //prototype.log.entries[0].response.content.text
-            //string response = prototype.entries.response;
-
-
-
             var factory = ObjectFactory.GetInstance<BeautyFactory>();
-            foreach (var age in ages.ToArrayOf<int>())
+            foreach (Age age in ages.ToArrayOf<int>())
             {
                 context.Beauties.Add(factory.Create(age));
             }
@@ -66,6 +53,7 @@ namespace Beauty.Business.Specs
             {
                 context.Beauties.Add(factory.Create(weight));
             }
+            context.SaveChanges();
         }
 
         [When(@"search for beauty who weight between (.*) and (.*) kg")]

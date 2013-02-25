@@ -17,5 +17,10 @@ namespace Beauty.UI.Specs
         public void SaveChanges()
         {
         }
+
+        public void Dispose()
+        {
+            
+        }
     }
 }

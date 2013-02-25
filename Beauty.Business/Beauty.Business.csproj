@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Age.cs" />
     <Compile Include="AgeFrom.cs" />
     <Compile Include="AgeTo.cs" />
     <Compile Include="Beauty.cs" />

@@ -68,7 +68,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BeautyFactory.cs" />
     <Compile Include="FakeDb\FakeDbSet.cs" />
     <Compile Include="FakeDb\InMemoryDbSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,7 +1,7 @@
 using System;
 using Beauty.Business;
 
-namespace Beauty.Specs.Common
+namespace Beauty.UI.Specs
 {
     public class BeautyFactory
     {
