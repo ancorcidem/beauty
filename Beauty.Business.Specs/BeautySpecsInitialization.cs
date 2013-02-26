@@ -11,10 +11,11 @@ namespace Beauty.Business.Specs
         public void InitDrop()
         {
             Database.SetInitializer(new BeautyDbInitializer());
+            
             var context = new BeautyDbContext();
             context.Database.Initialize(true);
 
-            ObjectFactory.Initialize(x => x.AddRegistry<BusinessMockRegistry>());
+            ObjectFactory.Initialize(x => x.AddRegistry<BusinessSpecsRegistry>());
         }
     }
 }

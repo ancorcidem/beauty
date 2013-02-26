@@ -36,7 +36,7 @@ namespace Beauty.Business.Specs
             return result;
         }
 
-        private Beauty CreateBeautyPrototype()
+        private static Beauty CreateBeautyPrototype()
         {
             return new Beauty
                 {

@@ -61,6 +61,9 @@
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="Rhino.Mocks">
+      <HintPath>..\packages\RhinoMocks.3.6.1\lib\net\Rhino.Mocks.dll</HintPath>
+    </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
     </Reference>
@@ -83,7 +86,8 @@
     <Compile Include="BeautySpecsInitialization.cs" />
     <Compile Include="BeautyDbInitializer.cs" />
     <Compile Include="BeautyStepDefinition.cs" />
-    <Compile Include="BusinessMockRegistry.cs" />
+    <Compile Include="BusinessSpecsRegistry.cs" />
+    <Compile Include="CrawlingForNewGirlsStepDefinition.cs" />
     <Compile Include="DerivedSpecs\SearchByParametersFeature.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -91,11 +95,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="SiteBrowserMock.cs" />
+    <Compile Include="Specs\FindNewBeautiesOnline.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FindNewBeautiesOnline.feature</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Resources\intimby.net.har" />
+    <None Include="Specs\FindNewBeautiesOnline.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>FindNewBeautiesOnline.feature.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Beauty.Business\Beauty.Business.csproj">

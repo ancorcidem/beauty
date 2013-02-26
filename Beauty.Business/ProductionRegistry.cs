@@ -1,10 +1,10 @@
 using StructureMap.Configuration.DSL;
 
-namespace Beauty.Business.Specs
+namespace Beauty.Business
 {
-    public class BusinessMockRegistry : Registry
+    public class ProductionRegistry : Registry
     {
-        public BusinessMockRegistry()
+        public ProductionRegistry()
         {
             For<IBeautyRepository>().Singleton().Use<BeautyRepository>();
         }

@@ -56,6 +56,8 @@
     <Compile Include="Criteria.cs" />
     <Compile Include="CriteriaCollection.cs" />
     <Compile Include="IBeautyRepository.cs" />
+    <Compile Include="ISiteBrowser.cs" />
+    <Compile Include="ProductionRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Weight.cs" />
     <Compile Include="WeightFrom.cs" />
