@@ -8,12 +8,6 @@ namespace Beauty.Business.Specs
     public class BeautyFactory
     {
         private static readonly HtmlDocument GirlProfilePrototype;
-        private enum BeautyProfileFieldIndex
-        {
-            Name = 2,
-            Age = 4,
-            Weight = 11
-        }
 
         static BeautyFactory()
         {
@@ -24,6 +18,11 @@ namespace Beauty.Business.Specs
 
         public Beauty Create(Weight weight)
         {
+            return CreateHtml(weight);
+        }
+
+        public Beauty CreateHtml(Weight weight)
+        {
             var result = CreateBeautyPrototype();
             result.Weight = weight.Value;
             return result;
@@ -31,26 +30,19 @@ namespace Beauty.Business.Specs
 
         public Beauty Create(Age age)
         {
+            return CreateHtml(age);
+        }
+
+        private static BeautyProfile CreateBeautyPrototype()
+        {
+            return new BeautyProfile(GirlProfilePrototype);
+        }
+
+        public BeautyProfile CreateHtml(Age age)
+        {
             var result = CreateBeautyPrototype();
             result.Age = age.Value;
             return result;
-        }
-
-        private static Beauty CreateBeautyPrototype()
-        {
-            return new Beauty
-                {
-                    Name = GetProfileField(BeautyProfileFieldIndex.Name),
-                    Age = int.Parse(GetProfileField(BeautyProfileFieldIndex.Age)),
-                    Weight = int.Parse(GetProfileField(BeautyProfileFieldIndex.Weight))
-                };
-        }
-
-        private static string GetProfileField(BeautyProfileFieldIndex profileFieldIndex)
-        {
-            return
-                GirlProfilePrototype.DocumentNode.SelectSingleNode(string.Format(@"//html/body/table[3]//tr[{0}]/td[2]",
-                                                                                 (int)profileFieldIndex)).InnerText;
         }
     }
 }

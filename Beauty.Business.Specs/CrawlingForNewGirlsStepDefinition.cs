@@ -21,7 +21,6 @@ namespace Beauty.Business.Specs
         [Given(@"some beauties who present on site only with weight (.*)")]
         public void GivenSomeBeautiesWhoPresentOnSiteOnlyWithWeightWeight(string weightsOnSite)
         {
-            ScenarioContext.Current.Pending();
         }
 
         [Then(@"girls found on site should have age (.*)")]

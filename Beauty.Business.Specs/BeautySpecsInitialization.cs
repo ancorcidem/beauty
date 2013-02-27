@@ -8,7 +8,7 @@ namespace Beauty.Business.Specs
     public class BeautySpecsInitialization
     {
         [BeforeScenario]
-        public void InitDrop()
+        public void InitOnline()
         {
             Database.SetInitializer(new BeautyDbInitializer());
             
