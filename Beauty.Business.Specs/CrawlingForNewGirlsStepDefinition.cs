@@ -1,4 +1,5 @@
 ﻿using System;
+using Rhino.Mocks;
 using StructureMap;
 using TechTalk.SpecFlow;
 
@@ -21,13 +22,17 @@ namespace Beauty.Business.Specs
         [Given(@"some beauties who present on site only with weight (.*)")]
         public void GivenSomeBeautiesWhoPresentOnSiteOnlyWithWeightWeight(string weightsOnSite)
         {
-        }
-
-        [Then(@"girls found on site should have age (.*)")]
-        public void ThenGirlsFoundOnSiteShouldHaveAge(string agesFoundOnSite)
-        {
             ScenarioContext.Current.Pending();
         }
+
+        //[Then(@"girls found on site should have age (.*)")]
+        //public void ThenGirlsFoundOnSiteShouldHaveAge(string agesFoundOnSite)
+        //{
+        //    //var siteBrowser = ObjectFactory.GetInstance<ISiteBrowser>();
+        //    //siteBrowser.AssertWasCalled(x => )
+
+
+        //}
 
         [Then(@"girls found on site should have weight (.*)")]
         public void ThenGirlsFoundOnSiteShouldHaveWeight(string weightFoundOnSite)

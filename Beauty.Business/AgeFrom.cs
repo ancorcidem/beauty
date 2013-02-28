@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq.Expressions;
 
 namespace Beauty.Business
@@ -23,5 +24,14 @@ namespace Beauty.Business
             get { return beauty => beauty.Age >= _ageFromValue; }
         }
 
+        public override string Value
+        {
+            get { return _ageFromValue.ToString(CultureInfo.InvariantCulture); }
+        }
+
+        public override string ParamName
+        {
+            get { return "AgeMin"; }
+        }
     }
 }

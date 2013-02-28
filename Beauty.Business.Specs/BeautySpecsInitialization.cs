@@ -8,7 +8,7 @@ namespace Beauty.Business.Specs
     public class BeautySpecsInitialization
     {
         [BeforeScenario]
-        public void InitOnline()
+        public void Init()
         {
             Database.SetInitializer(new BeautyDbInitializer());
             
@@ -16,6 +16,13 @@ namespace Beauty.Business.Specs
             context.Database.Initialize(true);
 
             ObjectFactory.Initialize(x => x.AddRegistry<BusinessSpecsRegistry>());
+        }
+
+        [BeforeScenario("online")]
+        public void InitOnline()
+        {
+            
+            
         }
     }
 }

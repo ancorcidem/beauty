@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Linq.Expressions;
 
 namespace Beauty.Business
 {
-    public abstract class Criteria
+    public abstract class Criteria : IUrlEmbeddedCriteria
     {
         protected abstract Expression<Func<Beauty, bool>> Expression { get; }
 
@@ -12,5 +13,15 @@ namespace Beauty.Business
         {
             return beauties.Where(Expression);
         }
+
+        public NameValueCollection ApplyOn(NameValueCollection queryParams)
+        {
+            queryParams[ParamName] = Value;
+            return queryParams;
+        }
+
+        public abstract string Value { get; }
+
+        public abstract string ParamName { get; }
     }
 }

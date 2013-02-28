@@ -45,7 +45,7 @@ namespace Beauty.Business
             get { return Int32.Parse(GetProfileFieldValue(BeautyProfileFieldIndex.Age).InnerHtml); }
             set
             {
-                GetProfileFieldValue(BeautyProfileFieldIndex.Name).InnerHtml =
+                GetProfileFieldValue(BeautyProfileFieldIndex.Age).InnerHtml =
                     value.ToString(CultureInfo.InvariantCulture);
             }
         }

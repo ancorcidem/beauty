@@ -79,7 +79,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 9
  testRunner.When("search for a beauty between 18 and 24 years old", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
- testRunner.Then("girls found on site should have age 18, 19, 23", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("found girls should be age of 18, 19, 23", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

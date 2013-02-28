@@ -36,7 +36,7 @@ namespace Beauty.Business.Specs
             ScenarioContext.Current.Set(criterias);
         }
 
-        [Then(@"found girls should be (.*)")]
+        [Then(@"found girls should be age of (.*)")]
         public void ThenFoundGirlsShouldBe(string ages)
         {
             IEnumerable<int> actualAges = ScenarioContext.Current.Get<CriteriaCollection>().Find().Select(x => x.Age);

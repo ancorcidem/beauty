@@ -20,5 +20,15 @@ namespace Beauty.Business
         {
             get { return beauty => beauty.Weight >= _weight.Value; }
         }
+
+        public override string Value
+        {
+            get { return string.Empty; }
+        }
+
+        public override string ParamName
+        {
+            get { return string.Empty; }
+        }
     }
 }

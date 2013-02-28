@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq.Expressions;
 
 namespace Beauty.Business
@@ -20,6 +21,16 @@ namespace Beauty.Business
         protected override Expression<Func<Beauty, bool>> Expression
         {
             get { return beauty => beauty.Age <= _ageToValue; }
+        }
+
+        public override string Value
+        {
+            get { return _ageToValue.ToString(CultureInfo.InvariantCulture); }
+        }
+
+        public override string ParamName
+        {
+            get { return "AgeMax"; }
         }
     }
 }

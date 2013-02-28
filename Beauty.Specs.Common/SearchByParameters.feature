@@ -6,7 +6,7 @@
 Scenario: find by age
 	Given beauties aging 21, 25, 54, 18
 	When search for a beauty between 18 and 24 years old
-	Then found girls should be 18, 21
+	Then found girls should be age of 18, 21
 
 Scenario: find by weight
 	Given beauties who weight 45, 50, 55, 60, 65, 70

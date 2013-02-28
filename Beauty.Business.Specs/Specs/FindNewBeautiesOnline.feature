@@ -7,7 +7,7 @@
 Scenario: find new beauties by age
 	Given some beauties who present on site only with age 18, 19, 23, 45
 	When search for a beauty between 18 and 24 years old
-	Then girls found on site should have age 18, 19, 23
+	Then found girls should be age of 18, 19, 23
 
 @online
 Scenario: find new beauties by weight
