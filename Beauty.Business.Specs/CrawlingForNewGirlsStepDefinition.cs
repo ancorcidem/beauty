@@ -1,5 +1,7 @@
 ﻿using System;
-using Rhino.Mocks;
+using System.Collections.Generic;
+using System.Linq;
+using FluentAssertions;
 using StructureMap;
 using TechTalk.SpecFlow;
 
@@ -28,10 +30,9 @@ namespace Beauty.Business.Specs
         //[Then(@"girls found on site should have age (.*)")]
         //public void ThenGirlsFoundOnSiteShouldHaveAge(string agesFoundOnSite)
         //{
-        //    //var siteBrowser = ObjectFactory.GetInstance<ISiteBrowser>();
+        //    IEnumerable<int> actualAges = ScenarioContext.Current.Get<CriteriaCollection>().Find().Select(x => x.Age);
+        //    actualAges.Should().BeEquivalentTo(agesFoundOnSite.ToArrayOf<int>());
         //    //siteBrowser.AssertWasCalled(x => )
-
-
         //}
 
         [Then(@"girls found on site should have weight (.*)")]

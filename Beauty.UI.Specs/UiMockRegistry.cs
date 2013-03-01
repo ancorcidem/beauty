@@ -1,5 +1,4 @@
 ﻿using Beauty.Business;
-using Beauty.Specs.Common;
 using StructureMap.Configuration.DSL;
 
 namespace Beauty.UI.Specs
@@ -9,6 +8,7 @@ namespace Beauty.UI.Specs
         public UiMockRegistry()
         {
             For<IBeautyRepository>().Singleton().Use<BeautyMockRepository>();
+            Forward<IBeautyRepository, BeautyMockRepository>();
 
             For<BeautyFactory>().Singleton().Use<BeautyFactory>();
         }

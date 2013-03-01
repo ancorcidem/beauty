@@ -8,7 +8,7 @@ namespace Beauty.Business
     {
         private readonly int _ageFromValue;
 
-        private AgeFrom(int ageFromValue)
+        public AgeFrom(int ageFromValue)
         {
             _ageFromValue = ageFromValue;
         }

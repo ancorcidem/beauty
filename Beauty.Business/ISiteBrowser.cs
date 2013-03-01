@@ -1,7 +1,10 @@
-﻿namespace Beauty.Business
+﻿using System.Collections.Generic;
+using System.Collections.Specialized;
+
+namespace Beauty.Business
 {
     public interface ISiteBrowser
     {
-        string MakeRequestBy(string url);
+        IEnumerable<BeautyProfile> Select(NameValueCollection queryParams);
     }
 }

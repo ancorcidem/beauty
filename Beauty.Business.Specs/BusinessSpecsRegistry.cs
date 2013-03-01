@@ -9,5 +9,10 @@
 
             For<BeautyFactory>().Singleton().Use<BeautyFactory>();
         }
+
+        protected override void Configure(StructureMap.Configuration.DSL.Expressions.CreatePluginFamilyExpression<IBeautyRepository> expression)
+        {
+            expression.Use<BeautySiteRepository>();
+        }
     }
 }

@@ -1,11 +1,9 @@
-using System;
-using System.Data.Entity;
+using System.Collections.Generic;
 
 namespace Beauty.Business
 {
     public interface IBeautyRepository
     {
-        IDbSet<Beauty> Beauties { get; }
-        void SaveChanges();
+        IEnumerable<Beauty> Find(IEnumerable<Criteria> criterias);
     }
 }

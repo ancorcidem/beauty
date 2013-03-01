@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Beauty.Business;
-using Beauty.Specs.Common;
 using FluentAssertions;
 using StructureMap;
 using TechTalk.SpecFlow;
@@ -15,14 +14,13 @@ namespace Beauty.UI.Specs
         [Given(@"beauties aging (.*)")]
         public void GivenBeautiesAging(string ages)
         {
-            var context = ObjectFactory.GetInstance<IBeautyRepository>();
+            var context = ObjectFactory.GetInstance<BeautyMockRepository>();
 
-            var factrory = ObjectFactory.GetInstance<BeautyFactory>();
+            var factory = ObjectFactory.GetInstance<BeautyFactory>();
             foreach (var age in ages.ToArrayOf<int>())
             {
-                context.Beauties.Add(factrory.Create(age));
+                context.Add(factory.Create(age));
             }
-            context.SaveChanges();
         }
 
         [When(@"search for a beauty between (.*) and (.*) years old")]
@@ -48,22 +46,23 @@ namespace Beauty.UI.Specs
         [Given(@"beauties who weight (.*)")]
         public void GivenBeautiesWhoWeight(string weights)
         {
-            var context = ObjectFactory.GetInstance<IBeautyRepository>();
-            var factory = ObjectFactory.GetInstance<BeautyFactory>();
-            foreach (Weight weight in weights.ToArrayOf<int>())
-            {
-                context.Beauties.Add(factory.Create(weight));
-            }
+            ScenarioContext.Current.Pending();
+            //var context = ObjectFactory.GetInstance<IBeautyRepository>();
+            //var factory = ObjectFactory.GetInstance<BeautyFactory>();
+            //foreach (Weight weight in weights.ToArrayOf<int>())
+            //{
+            //    context.Add(factory.Create(weight));
+            //}
         }
 
         [When(@"search for beauty who weight between (.*) and (.*) kg")]
         public void WhenSearchForBeautyWhoWeightBetweenAndKg(int weightFromValue, int weightToValue)
         {
             var criterias = ObjectFactory.GetInstance<CriteriaCollection>();
-            WeightFrom weightFrom = (Weight)weightFromValue;
+            WeightFrom weightFrom = (Weight) weightFromValue;
             criterias.Add(weightFrom);
 
-            WeightTo weightTo = (Weight)weightToValue;
+            WeightTo weightTo = (Weight) weightToValue;
             criterias.Add(weightTo);
 
             ScenarioContext.Current.Set(criterias);

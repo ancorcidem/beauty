@@ -1,26 +1,23 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Beauty.Business;
-using Beauty.Specs.Common.FakeDb;
-
 
 namespace Beauty.UI.Specs
 {
     public class BeautyMockRepository : IBeautyRepository
     {
-        private readonly IDbSet<Business.Beauty> _dbSet = new InMemoryDbSet<Business.Beauty>();
+        private readonly List<Business.Beauty> _dbSet = new List<Business.Beauty>();
 
-        public IDbSet<Business.Beauty> Beauties
+        public IEnumerable<Business.Beauty> Find(IEnumerable<Criteria> criterias)
         {
-            get { return _dbSet; }
+            IQueryable<Business.Beauty> queryable = _dbSet.AsQueryable();
+            criterias.ToList().ForEach(x => queryable = x.ApplyOn(queryable));
+            return queryable.Select(beauty => beauty);
         }
 
-        public void SaveChanges()
+        public void Add(Business.Beauty beauty)
         {
-        }
-
-        public void Dispose()
-        {
-            
+            _dbSet.Add(beauty);
         }
     }
 }

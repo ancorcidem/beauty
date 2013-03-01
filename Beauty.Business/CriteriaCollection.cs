@@ -6,12 +6,10 @@ namespace Beauty.Business
 {
     public class CriteriaCollection
     {
-        private readonly IBeautyRepository _repository;
         private readonly ISiteBrowser _siteBrowser;
 
-        public CriteriaCollection(IBeautyRepository repository, ISiteBrowser siteBrowser)
+        public CriteriaCollection(ISiteBrowser siteBrowser)
         {
-            _repository = repository;
             _siteBrowser = siteBrowser;
         }
 
@@ -25,14 +23,17 @@ namespace Beauty.Business
 
         public IEnumerable<Beauty> Find()
         {
-            IQueryable<Beauty> queryable = _repository.Beauties;
-            _criterias.ForEach(x => queryable = x.ApplyOn(queryable));
+            var nameValuePair = new NameValueCollection();
+            _criterias.ForEach(x => x.ApplyOn(nameValuePair));
 
-            var queryParams = new NameValueCollection();
-            _criterias.ForEach(x => x.ApplyOn(queryParams));
+            return _siteBrowser.Select(nameValuePair).Select(x => (Beauty)x);
+            //IQueryable<Beauty> queryable = _repository.Beauties;
+            //_criterias.ForEach(x => queryable = x.ApplyOn(queryable));
+
+            //var beautiesFromSite = _siteBrowser.Select(_criterias);
             
 
-            return queryable.Select(beauty => beauty);
+            //return queryable.Select(beauty => beauty);
         }
     }
 }

@@ -13,14 +13,13 @@ namespace Beauty.Business.Specs
         [Given(@"beauties aging (.*)")]
         public void GivenBeautiesAging(string ages)
         {
-            var context = ObjectFactory.GetInstance<IBeautyRepository>();
+            var siteBrowserMock = ObjectFactory.GetInstance<SiteBrowserMock>();
 
             var factory = ObjectFactory.GetInstance<BeautyFactory>();
             foreach (Age age in ages.ToArrayOf<int>())
             {
-                context.Beauties.Add(factory.Create(age));
+                siteBrowserMock.RegisterBeauty(age);
             }
-            context.SaveChanges();
         }
 
         [When(@"search for a beauty between (.*) and (.*) years old")]
@@ -39,20 +38,21 @@ namespace Beauty.Business.Specs
         [Then(@"found girls should be age of (.*)")]
         public void ThenFoundGirlsShouldBe(string ages)
         {
-            IEnumerable<int> actualAges = ScenarioContext.Current.Get<CriteriaCollection>().Find().Select(x => x.Age);
+            var actualAges = ScenarioContext.Current.Get<CriteriaCollection>().Find().Select(x => x.Age);
             actualAges.Should().BeEquivalentTo(ages.ToArrayOf<int>());
         }
 
         [Given(@"beauties who weight (.*)")]
         public void GivenBeautiesWhoWeight(string weights)
         {
-            var context = ObjectFactory.GetInstance<IBeautyRepository>();
-            var factory = ObjectFactory.GetInstance<BeautyFactory>();
-            foreach (Weight weight in weights.ToArrayOf<int>())
-            {
-                context.Beauties.Add(factory.Create(weight));
-            }
-            context.SaveChanges();
+            ScenarioContext.Current.Pending();
+            //var context = ObjectFactory.GetInstance<IBeautyRepository>();
+            //var factory = ObjectFactory.GetInstance<BeautyFactory>();
+            //foreach (Weight weight in weights.ToArrayOf<int>())
+            //{
+            //    context.Add(factory.Create(weight));
+            //}
+            //context.Commit();
         }
 
         [When(@"search for beauty who weight between (.*) and (.*) kg")]

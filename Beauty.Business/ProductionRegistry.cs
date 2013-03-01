@@ -1,4 +1,5 @@
 using StructureMap.Configuration.DSL;
+using StructureMap.Configuration.DSL.Expressions;
 
 namespace Beauty.Business
 {
@@ -6,7 +7,15 @@ namespace Beauty.Business
     {
         public ProductionRegistry()
         {
-            For<IBeautyRepository>().Singleton().Use<BeautyRepository>();
+            CreatePluginFamilyExpression<IBeautyRepository> createPluginFamilyExpression =
+                For<IBeautyRepository>().Singleton();
+            
+            Configure(createPluginFamilyExpression);
+        }
+
+        protected virtual void Configure(CreatePluginFamilyExpression<IBeautyRepository> expression)
+        {
+            expression.Use<BeautySqlRepository>();
         }
     }
 }

@@ -7,13 +7,11 @@ namespace Beauty.Business.Specs
 {
     public class BeautyFactory
     {
-        private static readonly HtmlDocument GirlProfilePrototype;
+        private static readonly dynamic GirlProfilePrototype;
 
         static BeautyFactory()
         {
-            GirlProfilePrototype = new HtmlDocument();
-            dynamic girlProfilePrototypeJson = JObject.Parse(Encoding.UTF8.GetString(Resources.GirlPrototype));
-            GirlProfilePrototype.LoadHtml((string) girlProfilePrototypeJson.log.entries[0].response.content.text);
+            GirlProfilePrototype = JObject.Parse(Encoding.UTF8.GetString(Resources.GirlPrototype));
         }
 
         public Beauty Create(Weight weight)
@@ -35,7 +33,9 @@ namespace Beauty.Business.Specs
 
         private static BeautyProfile CreateBeautyPrototype()
         {
-            return new BeautyProfile(GirlProfilePrototype);
+            var prototype = new HtmlDocument();
+            prototype.LoadHtml((string)GirlProfilePrototype.log.entries[0].response.content.text);
+            return new BeautyProfile(prototype);
         }
 
         public BeautyProfile CreateHtml(Age age)

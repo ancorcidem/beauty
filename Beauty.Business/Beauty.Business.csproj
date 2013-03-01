@@ -67,7 +67,8 @@
     <Compile Include="Beauty.cs" />
     <Compile Include="BeautyDbContext.cs" />
     <Compile Include="BeautyProfile.cs" />
-    <Compile Include="BeautyRepository.cs" />
+    <Compile Include="BeautySqlRepository.cs" />
+    <Compile Include="BeautySiteRepository.cs" />
     <Compile Include="Criteria.cs" />
     <Compile Include="CriteriaCollection.cs" />
     <Compile Include="IBeautyRepository.cs" />
