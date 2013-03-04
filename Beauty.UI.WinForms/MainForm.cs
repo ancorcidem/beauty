@@ -15,6 +15,9 @@ namespace Beauty.UI.WinForms
         public MainForm()
         {
             InitializeComponent();
+
+
+            //DataBindings.Add();
         }
     }
 }

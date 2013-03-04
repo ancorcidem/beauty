@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Beauty.Business;
+using Beauty.UI.WinForms;
 using FluentAssertions;
+using Rhino.Mocks;
 using StructureMap;
 using TechTalk.SpecFlow;
 
@@ -26,14 +28,24 @@ namespace Beauty.UI.Specs
         [When(@"search for a beauty between (.*) and (.*) years old")]
         public void WhenSearchForABeautyBetweenAndYearsOld(int ageFromValue, int ageToValue)
         {
-            var criterias = ObjectFactory.GetInstance<CriteriaCollection>();
-            AgeFrom ageFrom = ageFromValue;
-            criterias.Add(ageFrom);
+            var view = ObjectFactory.GetInstance<IMainView>();
 
-            AgeTo ageTo = ageToValue;
-            criterias.Add(ageTo);
+            var viewModel = new ViewModel
+                {
+                    AgeFrom = ageFromValue,
+                    AgeTo = ageToValue
+                };
 
-            ScenarioContext.Current.Set(criterias);
+            view.Raise(x => x.SearchButtonPressed += null, new SearchButtonPressEventArgs(viewModel));
+
+            //var criterias = ObjectFactory.GetInstance<CriteriaCollection>();
+            //AgeFrom ageFrom = ageFromValue;
+            //criterias.Add(ageFrom);
+
+            //AgeTo ageTo = ageToValue;
+            //criterias.Add(ageTo);
+
+            //ScenarioContext.Current.Set(criterias);
         }
 
         [Then(@"found girls should be age of (.*)")]

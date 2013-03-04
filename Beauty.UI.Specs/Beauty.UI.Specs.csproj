@@ -55,6 +55,9 @@
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="Rhino.Mocks">
+      <HintPath>..\packages\RhinoMocks.3.6.1\lib\net\Rhino.Mocks.dll</HintPath>
+    </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
     </Reference>
@@ -76,6 +79,11 @@
   <ItemGroup>
     <Compile Include="BeautyFactory.cs" />
     <Compile Include="BeautySpecsInitialization.cs" />
+    <Compile Include="Specs\MainScreenFeature.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MainScreenFeature.feature</DependentUpon>
+    </Compile>
     <Compile Include="UiMockRegistry.cs" />
     <Compile Include="BeautyMockRepository.cs" />
     <Compile Include="BeautyStepDefinition.cs" />
@@ -94,6 +102,10 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Specs\MainScreenFeature.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>MainScreenFeature.feature.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Beauty.Business\Beauty.Business.csproj">
@@ -103,6 +115,10 @@
     <ProjectReference Include="..\Beauty.Specs.Common\Beauty.Specs.Common.csproj">
       <Project>{eb73f03b-f5cc-4109-b9e1-47d32d0b3fa3}</Project>
       <Name>Beauty.Specs.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Beauty.UI.WinForms\Beauty.UI.WinForms.csproj">
+      <Project>{8931EEED-29A0-4AE4-B909-EEE0D866936F}</Project>
+      <Name>Beauty.UI.WinForms</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
