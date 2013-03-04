@@ -17,6 +17,7 @@ namespace Beauty.UI.Specs
         public void GivenBeautiesAging(string ages)
         {
             var context = ObjectFactory.GetInstance<BeautyMockRepository>();
+            ScenarioContext.Current.Set(ObjectFactory.GetInstance<MainFormController>());
 
             var factory = ObjectFactory.GetInstance<BeautyFactory>();
             foreach (var age in ages.ToArrayOf<int>())
@@ -30,41 +31,34 @@ namespace Beauty.UI.Specs
         {
             var view = ObjectFactory.GetInstance<IMainView>();
 
-            var viewModel = new ViewModel
+            var viewModel = new SearchParameters
                 {
                     AgeFrom = ageFromValue,
                     AgeTo = ageToValue
                 };
 
-            view.Raise(x => x.SearchButtonPressed += null, new SearchButtonPressEventArgs(viewModel));
+            ScenarioContext.Current.Set(viewModel);
 
-            //var criterias = ObjectFactory.GetInstance<CriteriaCollection>();
-            //AgeFrom ageFrom = ageFromValue;
-            //criterias.Add(ageFrom);
-
-            //AgeTo ageTo = ageToValue;
-            //criterias.Add(ageTo);
-
-            //ScenarioContext.Current.Set(criterias);
+            view.Raise(x => x.SearchButtonPressed += null, view, new SearchButtonPressEventArgs(viewModel));
         }
 
         [Then(@"found girls should be age of (.*)")]
         public void ThenFoundGirlsShouldBe(string ages)
         {
-            IEnumerable<int> actualAges = ScenarioContext.Current.Get<CriteriaCollection>().Find().Select(x => x.Age);
-            actualAges.Should().BeEquivalentTo(ages.ToArrayOf<int>());
+            var view = ObjectFactory.GetInstance<IMainView>();
+
+
+            var context = ObjectFactory.GetInstance<BeautyMockRepository>();
+            var result = context.Find(context.UsedCriterias);
+
+            var shownBeauties = (BeautyViewModel) view.GetArgumentsForCallsMadeOn(x => x.Show(null)).Single()[0];
+            shownBeauties.Beauties.Should().BeEquivalentTo(result);
         }
 
         [Given(@"beauties who weight (.*)")]
         public void GivenBeautiesWhoWeight(string weights)
         {
             ScenarioContext.Current.Pending();
-            //var context = ObjectFactory.GetInstance<IBeautyRepository>();
-            //var factory = ObjectFactory.GetInstance<BeautyFactory>();
-            //foreach (Weight weight in weights.ToArrayOf<int>())
-            //{
-            //    context.Add(factory.Create(weight));
-            //}
         }
 
         [When(@"search for beauty who weight between (.*) and (.*) kg")]

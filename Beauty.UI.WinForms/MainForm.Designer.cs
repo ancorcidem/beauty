@@ -30,9 +30,9 @@
         {
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.ageFromTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.ageToTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // button1
@@ -43,6 +43,7 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "Search";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
@@ -53,12 +54,12 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "From";
             // 
-            // textBox1
+            // ageFromTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(61, 47);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 2;
+            this.ageFromTextBox.Location = new System.Drawing.Point(61, 47);
+            this.ageFromTextBox.Name = "ageFromTextBox";
+            this.ageFromTextBox.Size = new System.Drawing.Size(100, 20);
+            this.ageFromTextBox.TabIndex = 2;
             // 
             // label2
             // 
@@ -69,21 +70,21 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "To";
             // 
-            // textBox2
+            // ageToTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(61, 82);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 2;
+            this.ageToTextBox.Location = new System.Drawing.Point(61, 82);
+            this.ageToTextBox.Name = "ageToTextBox";
+            this.ageToTextBox.Size = new System.Drawing.Size(100, 20);
+            this.ageToTextBox.TabIndex = 2;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 481);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.ageToTextBox);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.ageFromTextBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Name = "MainForm";
@@ -97,8 +98,8 @@
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox ageFromTextBox;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox ageToTextBox;
     }
 }

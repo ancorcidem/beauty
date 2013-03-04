@@ -76,6 +76,7 @@
     <Compile Include="IUrlEmbeddedCriteria.cs" />
     <Compile Include="ProductionRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SiteBrowser.cs" />
     <Compile Include="Weight.cs" />
     <Compile Include="WeightFrom.cs" />
     <Compile Include="WeightTo.cs" />

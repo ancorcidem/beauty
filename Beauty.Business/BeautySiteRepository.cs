@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Linq;
+using System.Web;
 
 namespace Beauty.Business
 {
@@ -15,11 +15,11 @@ namespace Beauty.Business
 
         public IEnumerable<Beauty> Find(IEnumerable<Criteria> criterias)
         {
-            var nameValueCollection = new NameValueCollection();
+            var nameValueCollection = HttpUtility.ParseQueryString(string.Empty);
             criterias.ToList().ForEach(x => x.ApplyOn(nameValueCollection));
 
             var beautiesFromSite = _browser.Select(nameValueCollection);
-            return beautiesFromSite.Select(x => (Beauty)x);
+            return beautiesFromSite.Select(x => (Beauty) x);
         }
     }
 }

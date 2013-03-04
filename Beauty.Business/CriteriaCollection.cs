@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Web;
 
 namespace Beauty.Business
 {
@@ -23,7 +24,7 @@ namespace Beauty.Business
 
         public IEnumerable<Beauty> Find()
         {
-            var nameValuePair = new NameValueCollection();
+            var nameValuePair = HttpUtility.ParseQueryString(string.Empty);
             _criterias.ForEach(x => x.ApplyOn(nameValuePair));
 
             return _siteBrowser.Select(nameValuePair).Select(x => (Beauty)x);

@@ -24,6 +24,7 @@ namespace Beauty.Business
         {
             _girlProfileHtmlDocument = new HtmlDocument();
             _girlProfileHtmlDocument.LoadHtml(girlProfileHtml);
+
         }
 
         private HtmlNode GetProfileFieldValue(BeautyProfileFieldIndex profileFieldIndex)

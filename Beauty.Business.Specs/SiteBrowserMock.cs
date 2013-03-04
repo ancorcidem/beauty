@@ -7,7 +7,6 @@ namespace Beauty.Business.Specs
 {
     public class SiteBrowserMock : ISiteBrowser
     {
-        //private static read only Uri BaseUrl = new Uri("http://intimby.net/cgi-bin/select.pl");
         private readonly List<BeautyProfile> _profiles = new List<BeautyProfile>();
 
         public IEnumerable<BeautyProfile> Select(NameValueCollection queryParams)
@@ -24,12 +23,6 @@ namespace Beauty.Business.Specs
             {
                 result = result.Where(x => x.Age <= int.Parse(ageMaxParam));
             }
-
-            //http://intimby.net/cgi-bin/select.pl?Gender=any&Orientation=any&penpal=2&friendship=2&flirt=2&marriage=2&sponsor=2&money=2&City=0&newcity=&AgeMin=0&AgeMax=99&Social=any&Added=any&OrderBy=datepublished
-            //url
-            //var uri = new Uri(url);
-            //var parameters = HttpUtility.ParseQueryString(uri.Query);
-            //var ageFrom = parameters["AgeFrom"]
 
             return result;
         }

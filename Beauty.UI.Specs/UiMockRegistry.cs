@@ -14,7 +14,6 @@ namespace Beauty.UI.Specs
             For<BeautyFactory>().Singleton().Use<BeautyFactory>();
 
             For<IMainView>().Singleton().Use(Rhino.Mocks.MockRepository.GenerateStub<IMainView>());
-            For<MainScreenController>().Singleton().Use<MainScreenController>();
         }
     }
 }
