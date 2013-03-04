@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using HtmlAgilityPack;
 
@@ -25,21 +26,36 @@ namespace Beauty.Business
 
             var builder = new UriBuilder(ProfilesListUri) {Query = queryParamsPrototype.ToString()};
 
+            var profileListPage = DownloadHtmlDocumentVia(builder.Uri);
+
+            var profileUrs = GetProfileUrls(profileListPage);
+            var profiles = new List<BeautyProfile>();
+            Parallel.ForEach(profileUrs, uri =>
+                {
+                    var profile = new BeautyProfile(DownloadHtmlDocumentVia(uri));
+                    lock (profiles)
+                    {
+                        profiles.Add(profile);
+                    }
+                });
+
+            return profiles;
+        }
+
+        private static HtmlDocument DownloadHtmlDocumentVia(Uri address)
+        {
             var webClient = new WebClient();
 
             var profileListPage = new HtmlDocument();
-            string profileListPageContent = webClient.DownloadString(builder.Uri);
+            string profileListPageContent = webClient.DownloadString(address);
             profileListPage.LoadHtml(profileListPageContent);
-
-            var profileUrs = GetProfileUrls(profileListPage);
-
-
-            return Enumerable.Empty<BeautyProfile>();
+            return profileListPage;
         }
 
         private Uri[] GetProfileUrls(HtmlDocument profileListPage)
         {
-            return Enumerable.Empty<Uri>().ToArray();
+            var profileNodes = profileListPage.DocumentNode.SelectNodes("//td[@valign='TOP']//a[@target='_blank']");
+            return profileNodes.Select(x => new Uri(BaseUri, x.Attributes["href"].Value)).ToArray();
         }
     }
 }
