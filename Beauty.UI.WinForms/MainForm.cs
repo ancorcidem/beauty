@@ -10,16 +10,14 @@ namespace Beauty.UI.WinForms
         public MainForm()
         {
             InitializeComponent();
-            
+
             _searchParameters = new SearchParameters
                 {
-                    AgeFrom = int.Parse(ageFromTextBox.Text),
-                    AgeTo = int.Parse(ageToTextBox.Text)
+                    AgeFrom = 19,
+                    AgeTo = 25
                 };
 
-            //DataBindings.Add(new Binding())
-
-
+            bindingSource1.Add(_searchParameters);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -33,7 +31,6 @@ namespace Beauty.UI.WinForms
 
         public void Show(BeautyViewModel beautyViewModel)
         {
-
         }
     }
 }
