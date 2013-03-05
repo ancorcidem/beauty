@@ -28,14 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.ageFromTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.ageToTextBox = new System.Windows.Forms.TextBox();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -59,7 +56,6 @@
             // 
             // ageFromTextBox
             // 
-            this.ageFromTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Tag", this.bindingSource1, "AgeFrom", true));
             this.ageFromTextBox.Location = new System.Drawing.Point(61, 47);
             this.ageFromTextBox.Name = "ageFromTextBox";
             this.ageFromTextBox.Size = new System.Drawing.Size(100, 20);
@@ -76,16 +72,10 @@
             // 
             // ageToTextBox
             // 
-            this.ageToTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Tag", this.bindingSource1, "AgeTo", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, null, "N2"));
-            this.ageToTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource1, "AgeTo", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, "19", "N2"));
             this.ageToTextBox.Location = new System.Drawing.Point(186, 48);
             this.ageToTextBox.Name = "ageToTextBox";
             this.ageToTextBox.Size = new System.Drawing.Size(100, 20);
             this.ageToTextBox.TabIndex = 2;
-            // 
-            // bindingSource1
-            // 
-            this.bindingSource1.DataSource = typeof(Beauty.UI.WinForms.SearchParameters);
             // 
             // MainForm
             // 
@@ -99,7 +89,6 @@
             this.Controls.Add(this.button1);
             this.Name = "MainForm";
             this.Text = "MainForm";
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -112,6 +101,5 @@
         private System.Windows.Forms.TextBox ageFromTextBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox ageToTextBox;
-        private System.Windows.Forms.BindingSource bindingSource1;
     }
 }

@@ -20,7 +20,7 @@ namespace Beauty.UI.Specs
             ScenarioContext.Current.Set(ObjectFactory.GetInstance<MainFormController>());
 
             var factory = ObjectFactory.GetInstance<BeautyFactory>();
-            foreach (var age in ages.ToArrayOf<int>())
+            foreach (Age age in ages.ToArrayOf<int>())
             {
                 context.Add(factory.Create(age));
             }
@@ -58,7 +58,14 @@ namespace Beauty.UI.Specs
         [Given(@"beauties who weight (.*)")]
         public void GivenBeautiesWhoWeight(string weights)
         {
-            ScenarioContext.Current.Pending();
+            var context = ObjectFactory.GetInstance<BeautyMockRepository>();
+            ScenarioContext.Current.Set(ObjectFactory.GetInstance<MainFormController>());
+
+            var factory = ObjectFactory.GetInstance<BeautyFactory>();
+            foreach (Weight weight in weights.ToArrayOf<int>())
+            {
+                context.Add(factory.Create(weight));
+            }
         }
 
         [When(@"search for beauty who weight between (.*) and (.*) kg")]

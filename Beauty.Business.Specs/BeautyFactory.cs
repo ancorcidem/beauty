@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using Beauty.Business.Specs.Properties;
 using HtmlAgilityPack;
 using Newtonsoft.Json.Linq;
@@ -34,8 +35,8 @@ namespace Beauty.Business.Specs
         private static BeautyProfile CreateBeautyPrototype()
         {
             var prototype = new HtmlDocument();
-            prototype.LoadHtml((string)GirlProfilePrototype.log.entries[0].response.content.text);
-            return new BeautyProfile(prototype);
+            prototype.LoadHtml((string) GirlProfilePrototype.log.entries[0].response.content.text);
+            return new BeautyProfile(prototype, new Uri("http://beauty.com/"));
         }
 
         public BeautyProfile CreateHtml(Age age)

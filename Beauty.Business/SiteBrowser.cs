@@ -31,7 +31,7 @@ namespace Beauty.Business
             var profiles = new List<BeautyProfile>();
             Parallel.ForEach(profileUrs, uri =>
                 {
-                    var profile = new BeautyProfile(uri.GetHtmlDocument());
+                    var profile = new BeautyProfile(uri.GetHtmlDocument(), uri);
                     lock (profiles)
                     {
                         profiles.Add(profile);

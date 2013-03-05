@@ -6,7 +6,8 @@ namespace Beauty.Business
 {
     public class BeautyProfile
     {
-        private readonly HtmlDocument _girlProfileHtmlDocument;
+        private readonly HtmlDocument _html;
+        public Uri Uri { get; private set; }
 
         private enum BeautyProfileFieldIndex
         {
@@ -15,22 +16,22 @@ namespace Beauty.Business
             Weight = 11
         }
 
-        public BeautyProfile(HtmlDocument girlProfileHtmlDocument)
+        public BeautyProfile(HtmlDocument html, Uri uri)
         {
-            _girlProfileHtmlDocument = girlProfileHtmlDocument;
+            _html = html;
+            Uri = uri;
         }
 
         public BeautyProfile(string girlProfileHtml)
         {
-            _girlProfileHtmlDocument = new HtmlDocument();
-            _girlProfileHtmlDocument.LoadHtml(girlProfileHtml);
-
+            _html = new HtmlDocument();
+            _html.LoadHtml(girlProfileHtml);
         }
 
         private HtmlNode GetProfileFieldValue(BeautyProfileFieldIndex profileFieldIndex)
         {
             return
-                _girlProfileHtmlDocument.DocumentNode.SelectSingleNode(
+                _html.DocumentNode.SelectSingleNode(
                     String.Format(@"//html/body/table[3]//tr[{0}]/td[2]",
                                   (int) profileFieldIndex));
         }

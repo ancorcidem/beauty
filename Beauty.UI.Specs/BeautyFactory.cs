@@ -14,10 +14,10 @@ namespace Beauty.UI.Specs
             _beautyCounter = 0;
         }
 
-        public Business.Beauty Create(int age)
+        public Business.Beauty Create(Age age)
         {
             var result = Create();
-            result.Age = age;
+            result.Age = age.Value;
             return result;
         }
 

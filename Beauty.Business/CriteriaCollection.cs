@@ -1,17 +1,14 @@
 ﻿using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Web;
 
 namespace Beauty.Business
 {
     public class CriteriaCollection
     {
-        private readonly ISiteBrowser _siteBrowser;
+        private readonly IBeautyRepository _beautyRepository;
 
-        public CriteriaCollection(ISiteBrowser siteBrowser)
+        public CriteriaCollection(IBeautyRepository beautyRepository)
         {
-            _siteBrowser = siteBrowser;
+            _beautyRepository = beautyRepository;
         }
 
         private readonly List<Criteria> _criterias =
@@ -24,17 +21,7 @@ namespace Beauty.Business
 
         public IEnumerable<Beauty> Find()
         {
-            var nameValuePair = HttpUtility.ParseQueryString(string.Empty);
-            _criterias.ForEach(x => x.ApplyOn(nameValuePair));
-
-            return _siteBrowser.Select(nameValuePair).Select(x => (Beauty)x);
-            //IQueryable<Beauty> queryable = _repository.Beauties;
-            //_criterias.ForEach(x => queryable = x.ApplyOn(queryable));
-
-            //var beautiesFromSite = _siteBrowser.Select(_criterias);
-            
-
-            //return queryable.Select(beauty => beauty);
+            return _beautyRepository.Find(_criterias);
         }
     }
 }
