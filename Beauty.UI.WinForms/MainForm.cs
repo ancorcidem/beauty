@@ -17,9 +17,11 @@ namespace Beauty.UI.WinForms
                     AgeTo = 25
                 };
 
-            ageFromTextBox.DataBindings.Add("Text", _searchParams, "AgeFrom", true);
-            ageToTextBox.DataBindings.Add("Text", _searchParams, "AgeTo", true);
-            //(new System.Windows.Forms.Binding("Text", this.entityObjectBindingSource, "NullableInt", true));
+            ageFromTextBox.Text = _searchParams.AgeFrom.Value;
+            ageToTextBox.Text = _searchParams.AgeTo.Value;
+            
+            ageToTextBox.TextChanged += (sender, args) => _searchParams.AgeTo = int.Parse(ageToTextBox.Text);
+            ageFromTextBox.TextChanged += (sender, args) => _searchParams.AgeFrom = int.Parse(ageFromTextBox.Text);
         }
 
         private void button1_Click(object sender, EventArgs e)

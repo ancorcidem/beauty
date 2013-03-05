@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Beauty.Business
 {
@@ -13,13 +14,16 @@ namespace Beauty.Business
 
         public int Weight { get; set; }
 
+        public Uri Uri { get; set; }
+
         public static implicit operator Beauty(BeautyProfile profile)
         {
             return new Beauty
                 {
                     Name = profile.Name,
                     Age = profile.Age,
-                    Weight = profile.Weight
+                    Weight = profile.Weight,
+                    Uri = profile.Uri
                 };
         }
     }
