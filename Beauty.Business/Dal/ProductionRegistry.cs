@@ -1,7 +1,7 @@
 using StructureMap.Configuration.DSL;
 using StructureMap.Configuration.DSL.Expressions;
 
-namespace Beauty.Business
+namespace Beauty.Business.Dal
 {
     public class ProductionRegistry : Registry
     {

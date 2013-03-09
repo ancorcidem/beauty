@@ -1,6 +1,6 @@
-﻿using System.Data.Entity;
+using System.Data.Entity;
 
-namespace Beauty.Business
+namespace Beauty.Business.Dal
 {
     public class BeautyDbContext : DbContext
     {

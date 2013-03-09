@@ -1,4 +1,5 @@
 using System.Data.Entity;
+using Beauty.Business.Dal;
 using StructureMap;
 using TechTalk.SpecFlow;
 

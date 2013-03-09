@@ -1,4 +1,5 @@
 ﻿using Beauty.Business;
+using Beauty.Business.Dal;
 using Beauty.UI.WinForms;
 using StructureMap.Configuration.DSL;
 

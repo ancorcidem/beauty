@@ -1,7 +1,8 @@
-﻿using System.Net;
+using System;
+using System.Net;
 using HtmlAgilityPack;
 
-namespace System
+namespace Beauty.Business.Dal
 {
     public static class UriExtensions
     {

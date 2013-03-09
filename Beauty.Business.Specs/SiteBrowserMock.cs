@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
+using Beauty.Business.Dal;
 using StructureMap;
 
 namespace Beauty.Business.Specs

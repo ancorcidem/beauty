@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using System.Globalization;
 using System.Linq.Expressions;
 
-namespace Beauty.Business
+namespace Beauty.Business.Criterias
 {
     public class AgeFrom : Criteria
     {

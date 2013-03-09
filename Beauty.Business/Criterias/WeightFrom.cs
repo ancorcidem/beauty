@@ -1,25 +1,24 @@
-﻿using System;
+using System;
 using System.Linq.Expressions;
 
-namespace Beauty.Business
+namespace Beauty.Business.Criterias
 {
-    public class WeightTo : Criteria
+    public class WeightFrom : Criteria
     {
         private readonly Weight _weight;
 
-        private WeightTo(Weight weight)
+        private WeightFrom(Weight weight)
         {
             _weight = weight;
         }
 
-        public static implicit operator WeightTo(Weight weight)
+        public static implicit operator WeightFrom(Weight weightFromValue)
         {
-            return new WeightTo(weight);
+            return new WeightFrom(weightFromValue);
         }
-
         protected override Expression<Func<Beauty, bool>> Expression
         {
-            get { return beauty => beauty.Weight <= _weight.Value; }
+            get { return beauty => beauty.Weight >= _weight.Value; }
         }
 
         public override string Value

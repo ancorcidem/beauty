@@ -20,6 +20,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beauty.UI.Specs", "Beauty.U
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beauty.Business.Specs", "Beauty.Business.Specs\Beauty.Business.Specs.csproj", "{31072B26-ADA3-42C9-888C-1C2A0C685E5C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E7D12277-4D1F-43CD-83C8-2DEF730B700A}"
+	ProjectSection(SolutionItems) = preProject
+		Beauty.dgml = Beauty.dgml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

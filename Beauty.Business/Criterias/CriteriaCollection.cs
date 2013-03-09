@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
+using Beauty.Business.Dal;
 
-namespace Beauty.Business
+namespace Beauty.Business.Criterias
 {
     public class CriteriaCollection
     {

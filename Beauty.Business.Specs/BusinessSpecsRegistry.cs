@@ -1,4 +1,6 @@
-﻿namespace Beauty.Business.Specs
+﻿using Beauty.Business.Dal;
+
+namespace Beauty.Business.Specs
 {
     public class BusinessSpecsRegistry : ProductionRegistry
     {

@@ -1,9 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Linq.Expressions;
+using Beauty.Business.Dal;
 
-namespace Beauty.Business
+namespace Beauty.Business.Criterias
 {
     public abstract class Criteria : IUrlEmbeddedCriteria
     {

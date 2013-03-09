@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Beauty.Business;
+using Beauty.Business.Criterias;
+using Beauty.Business.Dal;
 
 namespace Beauty.UI.Specs
 {

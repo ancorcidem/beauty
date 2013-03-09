@@ -1,4 +1,4 @@
-﻿namespace Beauty.Business
+namespace Beauty.Business.Dal
 {
     public interface IUrlEmbeddedCriteria
     {

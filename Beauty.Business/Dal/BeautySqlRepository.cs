@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
+using Beauty.Business.Criterias;
 
-namespace Beauty.Business
+namespace Beauty.Business.Dal
 {
     public class BeautySqlRepository : IBeautyRepository
     {

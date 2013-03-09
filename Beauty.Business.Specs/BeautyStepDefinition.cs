@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Beauty.Business.Criterias;
 using FluentAssertions;
 using StructureMap;
 using TechTalk.SpecFlow;
