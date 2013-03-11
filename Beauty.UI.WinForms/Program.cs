@@ -17,7 +17,7 @@ namespace Beauty.UI.WinForms
 
             ObjectFactory.Initialize(x => x.AddRegistry<UiRegistry>());
 
-            ObjectFactory.GetInstance<MainFormController>();
+            ObjectFactory.GetInstance<BeautyRepositoryPresenter>();
             Application.Run(ObjectFactory.GetInstance<MainForm>());
         }
     }

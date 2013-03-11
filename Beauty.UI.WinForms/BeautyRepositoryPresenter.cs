@@ -3,12 +3,12 @@ using Beauty.Business.Dal;
 
 namespace Beauty.UI.WinForms
 {
-    public class MainFormController
+    public class BeautyRepositoryPresenter
     {
         private readonly IMainView _view;
         private readonly IBeautyRepository _repository;
 
-        public MainFormController(IMainView view, IBeautyRepository repository)
+        public BeautyRepositoryPresenter(IMainView view, IBeautyRepository repository)
         {
             _view = view;
             _repository = repository;

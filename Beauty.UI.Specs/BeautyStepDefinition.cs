@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Beauty.Business;
-using Beauty.Business.Criterias;
 using Beauty.UI.WinForms;
 using FluentAssertions;
 using Rhino.Mocks;
@@ -18,7 +17,7 @@ namespace Beauty.UI.Specs
         public void GivenBeautiesAging(string ages)
         {
             var context = ObjectFactory.GetInstance<BeautyMockRepository>();
-            ScenarioContext.Current.Set(ObjectFactory.GetInstance<MainFormController>());
+            ScenarioContext.Current.Set(ObjectFactory.GetInstance<BeautyRepositoryPresenter>());
 
             var factory = ObjectFactory.GetInstance<BeautyFactory>();
             foreach (Age age in ages.ToArrayOf<int>())
@@ -58,7 +57,7 @@ namespace Beauty.UI.Specs
         {
             var context = ObjectFactory.GetInstance<BeautyMockRepository>();
             var factory = ObjectFactory.GetInstance<BeautyFactory>();
-            ScenarioContext.Current.Set(ObjectFactory.GetInstance<MainFormController>());
+            ScenarioContext.Current.Set(ObjectFactory.GetInstance<BeautyRepositoryPresenter>());
             while (beautiesAmount != 0)
             {
                 foreach (Age age in Enumerable.Range(ageFrom, ageTo - ageFrom))
@@ -86,6 +85,5 @@ namespace Beauty.UI.Specs
         {
             ShownBeauties().Count().Should().Be(beautiesAmountToFind);
         }
-
     }
 }
