@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Beauty.Business;
+using Beauty.Business.Criterias;
 using Beauty.UI.WinForms;
 using FluentAssertions;
 using Rhino.Mocks;
@@ -16,13 +17,11 @@ namespace Beauty.UI.Specs
         [Given(@"beauties aging (.*)")]
         public void GivenBeautiesAging(string ages)
         {
-            var context = ObjectFactory.GetInstance<BeautyMockRepository>();
             ScenarioContext.Current.Set(ObjectFactory.GetInstance<BeautyRepositoryPresenter>());
 
-            var factory = ObjectFactory.GetInstance<BeautyFactory>();
             foreach (Age age in ages.ToArrayOf<int>())
             {
-                context.Add(factory.Create(age));
+                Repository.Add(Factory.Create(age));
             }
         }
 
@@ -45,18 +44,15 @@ namespace Beauty.UI.Specs
         [Then(@"found girls should be age of (.*)")]
         public void ThenFoundGirlsShouldBe(string ages)
         {
-            var beauties = ShownBeauties();
+            var beauties = ShowBeautyCalls();
 
-            var context = ObjectFactory.GetInstance<BeautyMockRepository>();
-            var result = context.Find(context.UsedCriterias);
-            beauties.Should().BeEquivalentTo(result);
+            var result = Repository.Find(Repository.UsedCriterias);
+            beauties.Single().Beauties.Should().BeEquivalentTo(result);
         }
 
         [Given(@"(.*) beauties aging from (.*) to (.*)")]
         public void GivenBeautiesAgingFromTo(int beautiesAmount, int ageFrom, int ageTo)
         {
-            var context = ObjectFactory.GetInstance<BeautyMockRepository>();
-            var factory = ObjectFactory.GetInstance<BeautyFactory>();
             ScenarioContext.Current.Set(ObjectFactory.GetInstance<BeautyRepositoryPresenter>());
             while (beautiesAmount != 0)
             {
@@ -67,23 +63,58 @@ namespace Beauty.UI.Specs
                         break;
                     }
 
-                    context.Add(factory.Create(age));
+                    Repository.Add(Factory.Create(age));
                     beautiesAmount--;
                 }
             }
         }
 
-        private static IEnumerable<Business.Beauty> ShownBeauties()
+        private static BeautyMockRepository Repository
+        {
+            get { return ObjectFactory.GetInstance<BeautyMockRepository>(); }
+        }
+
+        private static BeautyFactory Factory
+        {
+            get { return ObjectFactory.GetInstance<BeautyFactory>(); }
+        }
+
+        [When(@"a new beauty aging (.*) added on site")]
+        public void WhenANewBeautyAgingAddedOnSite(int beautyAge)
+        {
+            Age age = beautyAge;
+            Business.Beauty beauty = Factory.Create(age);
+            Repository.Add(beauty);
+            
+            var beautyDataFeed = ObjectFactory.GetInstance<IBeautyDataFeed>();
+
+            beautyDataFeed.Raise(eventSubscription: dataFeed => dataFeed.Found += null, sender: beautyDataFeed,
+                                 args:
+                                     new BeautyFoundEventArgs
+                                         {
+                                             Beauties = new[] {beauty},
+                                             Criterias = new Criteria[] {(AgeFrom) beautyAge, (AgeTo) beautyAge}
+                                         });
+        }
+
+        [Then(@"the new beauty aging (.*) should be found")]
+        public void ThenTheNewBeautyAgingShouldBeFound(int age)
+        {
+            ShowBeautyCalls().Last().Beauties.Select(x => x.Age == age).Should().NotBeEmpty("age {0} not found", age);
+        }
+
+
+        private static IEnumerable<BeautyViewModel> ShowBeautyCalls()
         {
             var view = ObjectFactory.GetInstance<IMainView>();
-            var shownBeauties = (BeautyViewModel) view.GetArgumentsForCallsMadeOn(x => x.Show(null)).Single()[0];
-            return shownBeauties.Beauties;
+            IEnumerable<BeautyViewModel> shownBeauties = view.GetArgumentsForCallsMadeOn(x => x.Show(null)).Select(x => (BeautyViewModel)x[0]);
+            return shownBeauties;
         }
 
         [Then(@"all (.*) beauties should be found")]
         public void ThenAllBeautiesShouldBeFound(int beautiesAmountToFind)
         {
-            ShownBeauties().Count().Should().Be(beautiesAmountToFind);
+            ShowBeautyCalls().Single().Beauties.Count().Should().Be(beautiesAmountToFind);
         }
     }
 }

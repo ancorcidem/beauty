@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using Beauty.Business;
 using Beauty.Business.Criterias;
-using Beauty.UI.WinForms;
 using Rhino.Mocks;
 
 namespace Beauty.UI.Specs
