@@ -1,4 +1,6 @@
-﻿using Beauty.Business.Dal;
+﻿using System;
+using Beauty.Business.Dal;
+using StructureMap.Configuration.DSL.Expressions;
 
 namespace Beauty.Business.Specs
 {
@@ -12,9 +14,18 @@ namespace Beauty.Business.Specs
             For<BeautyFactory>().Singleton().Use<BeautyFactory>();
         }
 
-        protected override void Configure(StructureMap.Configuration.DSL.Expressions.CreatePluginFamilyExpression<IBeautyRepository> expression)
+        protected override void ConfigureExecutionEngine(
+            CreatePluginFamilyExpression<IExecutionEngine> executionEngineExpression)
         {
-            expression.Use<BeautySiteRepository>();
+            executionEngineExpression.Use<SyncExecutionEngine>();
+        }
+    }
+
+    public class SyncExecutionEngine : IExecutionEngine
+    {
+        public void Execute(Action action)
+        {
+            action();
         }
     }
 }

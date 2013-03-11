@@ -38,9 +38,16 @@ namespace Beauty.Business.Specs
         [Then(@"found girls should be age of (.*)")]
         public void ThenFoundGirlsShouldBe(string ages)
         {
-            var repository = ObjectFactory.GetInstance<IBeautyRepository>();
+            var filter = ObjectFactory.GetInstance<IBeautyFilter>();
             var criterias = ScenarioContext.Current.Get<List<Criteria>>();
-            var actualAges = repository.Find(criterias).Select(x => x.Age);
+
+            var beautyDataFeed = ObjectFactory.GetInstance<IBeautyDataFeed>();
+
+            var actualAges = new List<int>();
+            beautyDataFeed.Found += (sender, args) => actualAges.AddRange(args.Beauties.Select(x => x.Age));
+
+            filter.Filter = criterias;
+            
             actualAges.Should().BeEquivalentTo(ages.ToArrayOf<int>());
         }
 

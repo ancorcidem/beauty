@@ -71,10 +71,13 @@
     <Compile Include="Criterias\Criteria.cs" />
     <Compile Include="Criterias\WeightFrom.cs" />
     <Compile Include="Criterias\WeightTo.cs" />
+    <Compile Include="Dal\AsyncExecutionEngine.cs" />
     <Compile Include="Dal\BeautyDbContext.cs" />
+    <Compile Include="Dal\BeautyRepository.cs" />
     <Compile Include="Dal\BeautySiteRepository.cs" />
     <Compile Include="Dal\BeautySqlRepository.cs" />
     <Compile Include="Dal\IBeautyRepository.cs" />
+    <Compile Include="Dal\IExecutionEngine.cs" />
     <Compile Include="Dal\ISiteBrowser.cs" />
     <Compile Include="Dal\IUrlEmbeddedCriteria.cs" />
     <Compile Include="Dal\ProductionRegistry.cs" />

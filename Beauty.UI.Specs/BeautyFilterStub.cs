@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Beauty.Business;
 using Beauty.Business.Criterias;
 using Rhino.Mocks;
@@ -9,7 +10,7 @@ namespace Beauty.UI.Specs
     {
         private readonly BeautyMockRepository _beautyMockRepository;
         private readonly IBeautyDataFeed _dataFeedStub;
-        private Criteria[] _filter;
+        private IEnumerable<Criteria> _filter;
 
         public BeautyFilterStub(BeautyMockRepository beautyMockRepository, IBeautyDataFeed dataFeedStub)
         {
@@ -17,7 +18,7 @@ namespace Beauty.UI.Specs
             _dataFeedStub = dataFeedStub;
         }
 
-        public Criteria[] Filter
+        public IEnumerable<Criteria> Filter
         {
             get { return _filter; }
 
@@ -26,7 +27,7 @@ namespace Beauty.UI.Specs
                 _filter = value;
                 var result = _beautyMockRepository.Find(Filter);
                 _dataFeedStub.Raise(eventSubscription: dataFeed => dataFeed.Found += null, sender: _dataFeedStub,
-                                    args: new BeautyFoundEventArgs {Beauties = result.ToArray(), Criterias = Filter});
+                                    args: new BeautyFoundEventArgs {Beauties = result.ToArray(), Criterias = Filter.ToArray()});
             }
         }
     }

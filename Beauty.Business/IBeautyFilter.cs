@@ -1,9 +1,10 @@
-﻿using Beauty.Business.Criterias;
+﻿using System.Collections.Generic;
+using Beauty.Business.Criterias;
 
 namespace Beauty.Business
 {
     public interface IBeautyFilter
     {
-        Criteria[] Filter { get; set; }
+        IEnumerable<Criteria> Filter { get; set; }
     }
 }
