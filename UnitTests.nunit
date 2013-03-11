@@ -4,5 +4,4 @@
     <assembly path="Beauty.Business.Specs\bin\Debug\Beauty.Business.Specs.dll" />
     <assembly path="Beauty.UI.Specs\bin\Debug\Beauty.UI.Specs.dll" />
   </Config>
-  <Config name="Release" binpathtype="Auto" />
 </NUnitProject>
