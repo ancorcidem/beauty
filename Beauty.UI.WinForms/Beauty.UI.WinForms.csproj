@@ -63,7 +63,7 @@
     <Compile Include="BeautyRepositoryPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SearchButtonPressEventArgs.cs" />
+    <Compile Include="FilterChangeEventArgs.cs" />
     <Compile Include="SearchParameters.cs" />
     <Compile Include="UiRegistry.cs" />
     <EmbeddedResource Include="BeautyAvatar.resx">

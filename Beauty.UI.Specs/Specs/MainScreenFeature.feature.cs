@@ -83,17 +83,36 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("show new results arrived from feed")]
+        public virtual void ShowNewResultsArrivedFromFeed()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("show new results arrived from feed", ((string[])(null)));
+#line 11
+this.ScenarioSetup(scenarioInfo);
+#line 12
+ testRunner.Given("beauties aging 21, 25, 54, 18", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 13
+  testRunner.And("search for a beauty between 18 and 24 years old", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 14
+ testRunner.When("a new beauty aging 22 added on site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 15
+ testRunner.Then("the new beauty aging 22 should be found", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("find by age returns many results")]
         public virtual void FindByAgeReturnsManyResults()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("find by age returns many results", ((string[])(null)));
-#line 11
+#line 17
 this.ScenarioSetup(scenarioInfo);
-#line 12
+#line 18
  testRunner.Given("500 beauties aging from 18 to 40", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 13
+#line 19
  testRunner.When("search for a beauty between 18 and 40 years old", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 14
+#line 20
  testRunner.Then("all 500 beauties should be found", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

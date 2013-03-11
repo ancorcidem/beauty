@@ -5,7 +5,7 @@ namespace Beauty.UI.WinForms
 {
     public interface IMainView
     {
-        event EventHandler<SearchButtonPressEventArgs> SearchButtonPressed;
+        event EventHandler<FilterChangeEventArgs> FilterChanged;
         void Show(BeautyViewModel beautyViewModel);
     }
 

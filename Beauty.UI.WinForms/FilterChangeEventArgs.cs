@@ -2,11 +2,11 @@
 
 namespace Beauty.UI.WinForms
 {
-    public class SearchButtonPressEventArgs : EventArgs
+    public class FilterChangeEventArgs : EventArgs
     {
         public SearchParameters SearchParameters { get; private set; }
 
-        public SearchButtonPressEventArgs(SearchParameters searchParameters)
+        public FilterChangeEventArgs(SearchParameters searchParameters)
         {
             SearchParameters = searchParameters;
         }

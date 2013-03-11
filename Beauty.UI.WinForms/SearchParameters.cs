@@ -1,5 +1,4 @@
-﻿using Beauty.Business;
-using Beauty.Business.Criterias;
+﻿using Beauty.Business.Criterias;
 
 namespace Beauty.UI.WinForms
 {

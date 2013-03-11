@@ -1,28 +1,33 @@
-﻿using Beauty.Business.Criterias;
-using Beauty.Business.Dal;
+﻿using Beauty.Business;
+using Beauty.Business.Criterias;
 
 namespace Beauty.UI.WinForms
 {
     public class BeautyRepositoryPresenter
     {
         private readonly IMainView _view;
-        private readonly IBeautyRepository _repository;
+        private readonly IBeautyFilter _beautyFilter;
+        private readonly IBeautyDataFeed _dataFeed;
 
-        public BeautyRepositoryPresenter(IMainView view, IBeautyRepository repository)
+        public BeautyRepositoryPresenter(IMainView view, IBeautyFilter beautyFilter, IBeautyDataFeed dataFeed)
         {
             _view = view;
-            _repository = repository;
-            _view.SearchButtonPressed += ViewOnSearchButtonPressed;
+            _beautyFilter = beautyFilter;
+            _dataFeed = dataFeed;
+
+            _view.FilterChanged += OnFilterChanged;
+            _dataFeed.Found += DataFeedOnFound;
         }
 
-        private void ViewOnSearchButtonPressed(object sender, SearchButtonPressEventArgs eventArgs)
+        private void DataFeedOnFound(object sender, BeautyFoundEventArgs beautyFoundEventArgs)
         {
-            var searchParameters = eventArgs.SearchParameters;
+            var model = new BeautyViewModel {Beauties = beautyFoundEventArgs.Beauties};
+            _view.Show(model);
+        }
 
-            var result =
-                _repository.Find(new Criteria[] {searchParameters.AgeFrom, searchParameters.AgeTo});
-
-            _view.Show(new BeautyViewModel {Beauties = result});
+        private void OnFilterChanged(object sender, FilterChangeEventArgs eventArgs)
+        {
+            _beautyFilter.Filter = new Criteria[] {eventArgs.SearchParameters.AgeFrom, eventArgs.SearchParameters.AgeTo};
         }
     }
 }

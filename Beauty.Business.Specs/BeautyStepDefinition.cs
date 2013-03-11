@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Beauty.Business.Criterias;
+using Beauty.Business.Dal;
 using FluentAssertions;
 using StructureMap;
 using TechTalk.SpecFlow;
@@ -24,7 +25,7 @@ namespace Beauty.Business.Specs
         [When(@"search for a beauty between (.*) and (.*) years old")]
         public void WhenSearchForABeautyBetweenAndYearsOld(int ageFromValue, int ageToValue)
         {
-            var criterias = ObjectFactory.GetInstance<CriteriaCollection>();
+            var criterias = new List<Criteria>();
             AgeFrom ageFrom = ageFromValue;
             criterias.Add(ageFrom);
 
@@ -37,14 +38,16 @@ namespace Beauty.Business.Specs
         [Then(@"found girls should be age of (.*)")]
         public void ThenFoundGirlsShouldBe(string ages)
         {
-            var actualAges = ScenarioContext.Current.Get<CriteriaCollection>().Find().Select(x => x.Age);
+            var repository = ObjectFactory.GetInstance<IBeautyRepository>();
+            var criterias = ScenarioContext.Current.Get<List<Criteria>>();
+            var actualAges = repository.Find(criterias).Select(x => x.Age);
             actualAges.Should().BeEquivalentTo(ages.ToArrayOf<int>());
         }
 
         [When(@"search for beauty who weight between (.*) and (.*) kg")]
         public void WhenSearchForBeautyWhoWeightBetweenAndKg(int weightFromValue, int weightToValue)
         {
-            var criterias = ObjectFactory.GetInstance<CriteriaCollection>();
+            var criterias = ObjectFactory.GetInstance<List<Criteria>>();
             WeightFrom weightFrom = (Weight) weightFromValue;
             criterias.Add(weightFrom);
 
@@ -57,7 +60,9 @@ namespace Beauty.Business.Specs
         [Then(@"found girls should weight (.*)")]
         public void ThenFoundGirlsShouldWeight(string weight)
         {
-            IEnumerable<int> actualAges = ScenarioContext.Current.Get<CriteriaCollection>().Find().Select(x => x.Weight);
+            var repository = ObjectFactory.GetInstance<IBeautyRepository>();
+            var criterias = ScenarioContext.Current.Get<List<Criteria>>();
+            IEnumerable<int> actualAges = repository.Find(criterias).Select(x => x.Weight);
             actualAges.Should().BeEquivalentTo(weight.ToArrayOf<int>());
         }
     }

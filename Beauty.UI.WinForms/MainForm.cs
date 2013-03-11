@@ -27,12 +27,12 @@ namespace Beauty.UI.WinForms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (SearchButtonPressed == null) return;
+            if (FilterChanged == null) return;
 
-            SearchButtonPressed(this, new SearchButtonPressEventArgs(_searchParams));
+            FilterChanged(this, new FilterChangeEventArgs(_searchParams));
         }
 
-        public event EventHandler<SearchButtonPressEventArgs> SearchButtonPressed;
+        public event EventHandler<FilterChangeEventArgs> FilterChanged;
 
         public void Show(BeautyViewModel beautyViewModel)
         {

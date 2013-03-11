@@ -64,11 +64,11 @@
   <ItemGroup>
     <Compile Include="Age.cs" />
     <Compile Include="Beauty.cs" />
+    <Compile Include="BeautyFoundEventArgs.cs" />
     <Compile Include="BeautyProfile.cs" />
     <Compile Include="Criterias\AgeFrom.cs" />
     <Compile Include="Criterias\AgeTo.cs" />
     <Compile Include="Criterias\Criteria.cs" />
-    <Compile Include="Criterias\CriteriaCollection.cs" />
     <Compile Include="Criterias\WeightFrom.cs" />
     <Compile Include="Criterias\WeightTo.cs" />
     <Compile Include="Dal\BeautyDbContext.cs" />
@@ -81,6 +81,8 @@
     <Compile Include="Dal\SiteBrowser.cs" />
     <Compile Include="Dal\UriExtensions.cs" />
     <Compile Include="Extensions\HtmlDocumentExtensions.cs" />
+    <Compile Include="IBeautyDataFeed.cs" />
+    <Compile Include="IBeautyFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Weight.cs" />
   </ItemGroup>

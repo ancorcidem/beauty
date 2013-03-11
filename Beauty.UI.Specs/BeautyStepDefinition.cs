@@ -26,7 +26,7 @@ namespace Beauty.UI.Specs
             }
         }
 
-        [When(@"search for a beauty between (.*) and (.*) years old")]
+        [StepDefinition(@"search for a beauty between (.*) and (.*) years old")]
         public void WhenSearchForABeautyBetweenAndYearsOld(int ageFromValue, int ageToValue)
         {
             var view = ObjectFactory.GetInstance<IMainView>();
@@ -39,7 +39,7 @@ namespace Beauty.UI.Specs
 
             ScenarioContext.Current.Set(viewModel);
 
-            view.Raise(x => x.SearchButtonPressed += null, view, new SearchButtonPressEventArgs(viewModel));
+            view.Raise(x => x.FilterChanged += null, view, new FilterChangeEventArgs(viewModel));
         }
 
         [Then(@"found girls should be age of (.*)")]

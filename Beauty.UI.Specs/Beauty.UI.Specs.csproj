@@ -78,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BeautyFactory.cs" />
+    <Compile Include="BeautyFilterStub.cs" />
     <Compile Include="BeautySpecsInitialization.cs" />
     <Compile Include="Specs\MainScreenFeature.feature.cs">
       <AutoGen>True</AutoGen>
