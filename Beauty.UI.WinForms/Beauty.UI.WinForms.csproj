@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BeautyAvatar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BeautyAvatar.Designer.cs">
+      <DependentUpon>BeautyAvatar.cs</DependentUpon>
+    </Compile>
     <Compile Include="IMainView.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -60,6 +66,9 @@
     <Compile Include="SearchButtonPressEventArgs.cs" />
     <Compile Include="SearchParameters.cs" />
     <Compile Include="UiRegistry.cs" />
+    <EmbeddedResource Include="BeautyAvatar.resx">
+      <DependentUpon>BeautyAvatar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

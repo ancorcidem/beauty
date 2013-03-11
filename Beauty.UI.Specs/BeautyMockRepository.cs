@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Beauty.Business;
 using Beauty.Business.Criterias;
 using Beauty.Business.Dal;
 
@@ -21,7 +20,7 @@ namespace Beauty.UI.Specs
             var usedCriterias = criterias.ToArray();
 
             _usedCriterias = usedCriterias;
-            
+
             var queryable = _dbSet.AsQueryable();
             usedCriterias.ToList().ForEach(x => queryable = x.ApplyOn(queryable));
             return queryable.Select(beauty => beauty);

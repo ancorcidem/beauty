@@ -19,8 +19,7 @@ namespace Beauty.Business.Dal
         public IEnumerable<Beauty> Find(IEnumerable<Criteria> criterias)
         {
             var result = new List<Beauty>();
-            
-            //result.AddRange(_siteRepository.Find(criterias));
+            result.AddRange(_siteRepository.Find(criterias));
             //_siteRepository.Find(criterias);
             return result;
         }

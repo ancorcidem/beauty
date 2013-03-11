@@ -5,11 +5,12 @@ namespace Beauty.UI.WinForms
 {
     public partial class MainForm : Form, IMainView
     {
-        private SearchParameters _searchParams;
+        private readonly SearchParameters _searchParams;
 
         public MainForm()
         {
             InitializeComponent();
+            dataGridView1.AutoGenerateColumns = true;
 
             _searchParams = new SearchParameters
                 {
@@ -35,6 +36,7 @@ namespace Beauty.UI.WinForms
 
         public void Show(BeautyViewModel beautyViewModel)
         {
+            bindingSource1.DataSource = beautyViewModel.Beauties;
         }
     }
 }

@@ -15,8 +15,6 @@ namespace Beauty.Business.Specs
         public void GivenBeautiesAging(string ages)
         {
             var siteBrowserMock = ObjectFactory.GetInstance<SiteBrowserMock>();
-
-            var factory = ObjectFactory.GetInstance<BeautyFactory>();
             foreach (Age age in ages.ToArrayOf<int>())
             {
                 siteBrowserMock.RegisterBeauty(age);
@@ -41,19 +39,6 @@ namespace Beauty.Business.Specs
         {
             var actualAges = ScenarioContext.Current.Get<CriteriaCollection>().Find().Select(x => x.Age);
             actualAges.Should().BeEquivalentTo(ages.ToArrayOf<int>());
-        }
-
-        [Given(@"beauties who weight (.*)")]
-        public void GivenBeautiesWhoWeight(string weights)
-        {
-            ScenarioContext.Current.Pending();
-            //var context = ObjectFactory.GetInstance<IBeautyRepository>();
-            //var factory = ObjectFactory.GetInstance<BeautyFactory>();
-            //foreach (Weight weight in weights.ToArrayOf<int>())
-            //{
-            //    context.Add(factory.Create(weight));
-            //}
-            //context.Commit();
         }
 
         [When(@"search for beauty who weight between (.*) and (.*) kg")]

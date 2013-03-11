@@ -1,5 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Drawing;
 
 namespace Beauty.Business
 {
@@ -15,6 +17,11 @@ namespace Beauty.Business
         public int Weight { get; set; }
 
         public Uri Uri { get; set; }
+
+        [NotMapped]
+        public Bitmap Avatar { get; set; }
+
+        public byte[] AvatarImageBlob { get; set; }
 
         public static implicit operator Beauty(BeautyProfile profile)
         {

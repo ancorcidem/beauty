@@ -1,5 +1,4 @@
-﻿using Beauty.Business;
-using Beauty.Business.Dal;
+﻿using Beauty.Business.Dal;
 using StructureMap.Configuration.DSL;
 
 namespace Beauty.UI.WinForms
@@ -10,7 +9,7 @@ namespace Beauty.UI.WinForms
         {
             For<IMainView>().Singleton().Use<MainForm>();
             Forward<IMainView, MainForm>();
-            For<IBeautyRepository>().Use<BeautySiteRepository>();
+            For<IBeautyRepository>().Use<BeautyRepository>();
             For<ISiteBrowser>().Use<SiteBrowser>();
         }
     }

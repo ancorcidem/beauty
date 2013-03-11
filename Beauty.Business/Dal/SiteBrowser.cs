@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using HtmlAgilityPack;
@@ -10,10 +9,10 @@ namespace Beauty.Business.Dal
 {
     public class SiteBrowser : ISiteBrowser
     {
-        private static readonly Uri BaseUri = new Uri("http://intimby.net/");
+        internal static readonly Uri BaseUri = new Uri("http://intimby.net/");
 
         private static readonly Uri ProfilesListUri = new Uri(BaseUri,
-                                                              "cgi-bin/select.pl?Gender=any&Orientation=any&penpal=2&friendship=2&flirt=2&marriage=2&sponsor=2&money=2&City=0&newcity=&AgeMin=0&AgeMax=99&Social=any&Added=any&OrderBy=datepublished");
+                                                              "cgi-bin/select.pl?Gender=any&Orientation=any&penpal=2&friendship=2&flirt=2&marriage=2&sponsor=2&money=2&City=0&newcity=&AgeMin=0&AgeMax=99&Social=any&Added=any&OrderBy=datepublished&Start=0");
 
         public IEnumerable<BeautyProfile> Select(NameValueCollection queryParams)
         {
@@ -27,7 +26,7 @@ namespace Beauty.Business.Dal
 
             var profileListPage = builder.Uri.GetHtmlDocument();
 
-            var profileUrs = GetProfileUrls(profileListPage);
+            var profileUrs = HtmlDocumentExtensions.GetProfileUrls(profileListPage);
             var profiles = new List<BeautyProfile>();
             Parallel.ForEach(profileUrs, uri =>
                 {
@@ -39,12 +38,6 @@ namespace Beauty.Business.Dal
                 });
 
             return profiles;
-        }
-
-        private IEnumerable<Uri> GetProfileUrls(HtmlDocument profileListPage)
-        {
-            var profileNodes = profileListPage.DocumentNode.SelectNodes("//td[@valign='TOP']//a[@target='_blank']");
-            return profileNodes.Select(x => new Uri(BaseUri, x.Attributes["href"].Value)).ToArray();
         }
     }
 }

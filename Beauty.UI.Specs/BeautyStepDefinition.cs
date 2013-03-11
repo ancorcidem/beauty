@@ -46,47 +46,46 @@ namespace Beauty.UI.Specs
         [Then(@"found girls should be age of (.*)")]
         public void ThenFoundGirlsShouldBe(string ages)
         {
-            var view = ObjectFactory.GetInstance<IMainView>();
-
+            var beauties = ShownBeauties();
 
             var context = ObjectFactory.GetInstance<BeautyMockRepository>();
             var result = context.Find(context.UsedCriterias);
-
-            var shownBeauties = (BeautyViewModel) view.GetArgumentsForCallsMadeOn(x => x.Show(null)).Single()[0];
-            shownBeauties.Beauties.Should().BeEquivalentTo(result);
+            beauties.Should().BeEquivalentTo(result);
         }
 
-        [Given(@"beauties who weight (.*)")]
-        public void GivenBeautiesWhoWeight(string weights)
+        [Given(@"(.*) beauties aging from (.*) to (.*)")]
+        public void GivenBeautiesAgingFromTo(int beautiesAmount, int ageFrom, int ageTo)
         {
             var context = ObjectFactory.GetInstance<BeautyMockRepository>();
-            ScenarioContext.Current.Set(ObjectFactory.GetInstance<MainFormController>());
-
             var factory = ObjectFactory.GetInstance<BeautyFactory>();
-            foreach (Weight weight in weights.ToArrayOf<int>())
+            ScenarioContext.Current.Set(ObjectFactory.GetInstance<MainFormController>());
+            while (beautiesAmount != 0)
             {
-                context.Add(factory.Create(weight));
+                foreach (Age age in Enumerable.Range(ageFrom, ageTo - ageFrom))
+                {
+                    if (beautiesAmount == 0)
+                    {
+                        break;
+                    }
+
+                    context.Add(factory.Create(age));
+                    beautiesAmount--;
+                }
             }
         }
 
-        [When(@"search for beauty who weight between (.*) and (.*) kg")]
-        public void WhenSearchForBeautyWhoWeightBetweenAndKg(int weightFromValue, int weightToValue)
+        private static IEnumerable<Business.Beauty> ShownBeauties()
         {
-            var criterias = ObjectFactory.GetInstance<CriteriaCollection>();
-            WeightFrom weightFrom = (Weight) weightFromValue;
-            criterias.Add(weightFrom);
-
-            WeightTo weightTo = (Weight) weightToValue;
-            criterias.Add(weightTo);
-
-            ScenarioContext.Current.Set(criterias);
+            var view = ObjectFactory.GetInstance<IMainView>();
+            var shownBeauties = (BeautyViewModel) view.GetArgumentsForCallsMadeOn(x => x.Show(null)).Single()[0];
+            return shownBeauties.Beauties;
         }
 
-        [Then(@"found girls should weight (.*)")]
-        public void ThenFoundGirlsShouldWeight(string weight)
+        [Then(@"all (.*) beauties should be found")]
+        public void ThenAllBeautiesShouldBeFound(int beautiesAmountToFind)
         {
-            IEnumerable<int> actualAges = ScenarioContext.Current.Get<CriteriaCollection>().Find().Select(x => x.Weight);
-            actualAges.Should().BeEquivalentTo(weight.ToArrayOf<int>());
+            ShownBeauties().Count().Should().Be(beautiesAmountToFind);
         }
+
     }
 }
