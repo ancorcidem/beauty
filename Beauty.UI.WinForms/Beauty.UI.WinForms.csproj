@@ -47,6 +47,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.2.2.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
     </Reference>
@@ -62,12 +65,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutomapperProductionProfile.cs" />
     <Compile Include="BeautyAvatar.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="BeautyAvatar.Designer.cs">
       <DependentUpon>BeautyAvatar.cs</DependentUpon>
     </Compile>
+    <Compile Include="BeautyView.cs" />
+    <Compile Include="MainFormViewModel.cs" />
     <Compile Include="IMainView.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>

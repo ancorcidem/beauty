@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using AutoMapper;
 using StructureMap;
 
 namespace Beauty.UI.WinForms
@@ -16,6 +17,7 @@ namespace Beauty.UI.WinForms
             Application.SetCompatibleTextRenderingDefault(false);
 
             ObjectFactory.Initialize(x => x.AddRegistry<UiRegistry>());
+            Mapper.Initialize(x => x.AddProfile<AutomapperProductionProfile>());
 
             ObjectFactory.GetInstance<BeautyRepositoryPresenter>();
             Application.Run(ObjectFactory.GetInstance<MainForm>());

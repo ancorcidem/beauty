@@ -34,16 +34,16 @@ namespace Beauty.UI.WinForms
 
         public event EventHandler<FilterChangeEventArgs> FilterChanged;
 
-        private delegate void ShowCallback(BeautyViewModel beautyViewModel);
-        public void Show(BeautyViewModel beautyViewModel)
+        private delegate void ShowCallback(MainFormViewModel mainFormViewModel);
+        public void Show(MainFormViewModel mainFormViewModel)
         {
             if (InvokeRequired)
             {
-                Invoke(new ShowCallback(Show), beautyViewModel);
+                Invoke(new ShowCallback(Show), mainFormViewModel);
                 return;
             }
 
-            bindingSource1.DataSource = beautyViewModel.Beauties;
+            bindingSource1.DataSource = mainFormViewModel.Beauties;
         }
     }
 }

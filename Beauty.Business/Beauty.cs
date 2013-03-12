@@ -1,25 +1,48 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Drawing;
+using System.IO;
 
 namespace Beauty.Business
 {
     public class Beauty
     {
-        [Key]
-        public virtual int Id { get; set; }
+        public int Id { get; set; }
 
-        public virtual string Name { get; set; }
+        public string Name { get; set; }
 
         public int Age { get; set; }
 
         public int Weight { get; set; }
 
-        public Uri Uri { get; set; }
+        public Beauty()
+        {
+            GetAvatar = ConvertAvatarFromBlobToImage;
+        }
 
         [NotMapped]
-        public Bitmap Avatar { get; set; }
+        public Uri Uri
+        {
+            get { return new Uri(Url); }
+            set { Url = value.ToString(); }
+        }
+
+        public string Url { get; set; }
+
+        private Image ConvertAvatarFromBlobToImage()
+        {
+            var bitmap = new Bitmap(new MemoryStream(AvatarImageBlob));
+            GetAvatar = () => bitmap;
+            return bitmap;
+        }
+
+        private Func<Image> GetAvatar;
+
+        [NotMapped]
+        public Image Avatar
+        {
+            get { return GetAvatar(); }
+        }
 
         public byte[] AvatarImageBlob { get; set; }
 
@@ -30,7 +53,8 @@ namespace Beauty.Business
                     Name = profile.Name,
                     Age = profile.Age,
                     Weight = profile.Weight,
-                    Uri = profile.Uri
+                    Uri = profile.Uri,
+                    AvatarImageBlob = profile.AvatarImageBlob,
                 };
         }
     }

@@ -93,6 +93,7 @@
     <Compile Include="Dal\BeautySqlRepository.cs" />
     <Compile Include="Dal\IBeautyRepository.cs" />
     <Compile Include="Dal\IExecutionEngine.cs" />
+    <Compile Include="Dal\IImageDownloader.cs" />
     <Compile Include="Dal\ISiteBrowser.cs" />
     <Compile Include="Dal\IUrlEmbeddedCriteria.cs" />
     <Compile Include="Dal\ProductionRegistry.cs" />

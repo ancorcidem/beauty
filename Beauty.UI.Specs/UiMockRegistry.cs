@@ -1,5 +1,6 @@
 ﻿using Beauty.Business;
 using Beauty.Business.Dal;
+using Beauty.Specs.Common;
 using Beauty.UI.WinForms;
 using Rhino.Mocks;
 using StructureMap.Configuration.DSL;
@@ -18,6 +19,7 @@ namespace Beauty.UI.Specs
             For<IMainView>().Singleton().Use(MockRepository.GenerateStub<IMainView>());
             For<IBeautyFilter>().Singleton().Use<BeautyFilterStub>();
             For<IBeautyDataFeed>().Singleton().Use(MockRepository.GenerateStub<IBeautyDataFeed>());
+            For<IImageDownloader>().Singleton().Use<ImageDownloaderMock>();
         }
     }
 }

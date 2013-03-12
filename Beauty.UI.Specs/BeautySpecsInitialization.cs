@@ -1,4 +1,6 @@
-﻿using StructureMap;
+﻿using AutoMapper;
+using Beauty.UI.WinForms;
+using StructureMap;
 using TechTalk.SpecFlow;
 
 namespace Beauty.UI.Specs
@@ -10,6 +12,7 @@ namespace Beauty.UI.Specs
         public void InitDrop()
         {
             ObjectFactory.Initialize(x => x.AddRegistry<UiMockRegistry>());
+            Mapper.Initialize(x => x.AddProfile<AutomapperProductionProfile>());
         }
     }
 }

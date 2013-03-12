@@ -1,16 +1,19 @@
 using System;
 using Beauty.Business;
+using Beauty.Business.Dal;
 
 namespace Beauty.UI.Specs
 {
     public class BeautyFactory
     {
+        private readonly IImageDownloader _loader;
         private int _ageCounter;
         private int _weightCounter;
         private int _beautyCounter;
 
-        public BeautyFactory()
+        public BeautyFactory(IImageDownloader loader)
         {
+            _loader = loader;
             _beautyCounter = 0;
         }
 
@@ -27,7 +30,8 @@ namespace Beauty.UI.Specs
                 {
                     Name = String.Format("Beauty {0}", _beautyCounter++),
                     Age = _ageCounter++,
-                    Weight = _weightCounter++
+                    Weight = _weightCounter++,
+                    AvatarImageBlob = _loader.Download(null)
                 };
         }
 

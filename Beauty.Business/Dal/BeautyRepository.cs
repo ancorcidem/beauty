@@ -27,7 +27,17 @@ namespace Beauty.Business.Dal
                 _filter.AddRange(value);
 
                 var criterias = _filter.ToArray();
+                _executionEngine.Execute(() => QuerySqlRepository(criterias));
                 _executionEngine.Execute(() => QuerySiteRepository(criterias));
+            }
+        }
+
+        private void QuerySqlRepository(IEnumerable<Criteria> criterias)
+        {
+            var result = _sqlRepository.Find(criterias);
+            if (Found != null)
+            {
+                Found(this, new BeautyFoundEventArgs {Beauties = result.ToArray()});
             }
         }
 

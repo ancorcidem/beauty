@@ -1,4 +1,5 @@
 ﻿using Beauty.Business.Dal;
+using Beauty.Specs.Common;
 using StructureMap.Configuration.DSL.Expressions;
 
 namespace Beauty.Business.Specs
@@ -20,6 +21,12 @@ namespace Beauty.Business.Specs
             CreatePluginFamilyExpression<IExecutionEngine> executionEngineExpression)
         {
             executionEngineExpression.Use<SyncExecutionEngine>();
+        }
+
+        protected override void ConfigureImageDownloader(
+            CreatePluginFamilyExpression<IImageDownloader> createPluginFamilyExpression)
+        {
+            createPluginFamilyExpression.Use<ImageDownloaderMock>();
         }
     }
 }

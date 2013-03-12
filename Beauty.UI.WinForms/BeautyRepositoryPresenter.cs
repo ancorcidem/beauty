@@ -1,4 +1,6 @@
-﻿using Beauty.Business;
+﻿using System.Collections.Generic;
+using AutoMapper;
+using Beauty.Business;
 using Beauty.Business.Criterias;
 
 namespace Beauty.UI.WinForms
@@ -21,7 +23,14 @@ namespace Beauty.UI.WinForms
 
         private void DataFeedOnFound(object sender, BeautyFoundEventArgs beautyFoundEventArgs)
         {
-            var model = new BeautyViewModel {Beauties = beautyFoundEventArgs.Beauties};
+            var beautyViews =
+                Mapper.Map<IEnumerable<Business.Beauty>, IEnumerable<BeautyView>>(beautyFoundEventArgs.Beauties);
+
+            var model = new MainFormViewModel
+                {
+                    Beauties =
+                        beautyViews
+                };
             _view.Show(model);
         }
 

@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.Globalization;
+using System.IO;
+using Beauty.Business.Dal;
 using HtmlAgilityPack;
 
 namespace Beauty.Business
@@ -20,6 +24,7 @@ namespace Beauty.Business
         {
             _html = html;
             Uri = uri;
+            LoadAvatarImageBlob = LoadAvatarImageBlobViaHttp;
         }
 
         public BeautyProfile(string girlProfileHtml)
@@ -60,6 +65,41 @@ namespace Beauty.Business
                 GetProfileFieldValue(BeautyProfileFieldIndex.Weight).InnerHtml =
                     value.ToString(CultureInfo.InvariantCulture);
             }
+        }
+
+        private static readonly byte[] EmptyImage;
+
+        static BeautyProfile()
+        {
+            using (Bitmap bitmap = new Bitmap(100, 100))
+            {
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    bitmap.Save(stream, ImageFormat.Jpeg);
+                    EmptyImage = stream.ToArray();
+                }
+            }
+        }
+
+        private byte[] LoadAvatarImageBlobViaHttp()
+        {
+            HtmlNode imageNode = _html.DocumentNode.SelectSingleNode(@"//html/body/table[3]//img");
+            if (imageNode == null)
+            {
+                return EmptyImage;
+            }
+            var url = new Uri(SiteBrowser.BaseUri, imageNode.Attributes["src"].Value);
+
+            byte[] result = url.DownloadImage();
+            LoadAvatarImageBlob = () => result;
+            return result;
+        }
+
+        private Func<byte[]> LoadAvatarImageBlob;
+
+        public byte[] AvatarImageBlob
+        {
+            get { return LoadAvatarImageBlob(); }
         }
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Net;
 using HtmlAgilityPack;
+using StructureMap;
 
 namespace Beauty.Business.Dal
 {
@@ -14,6 +15,11 @@ namespace Beauty.Business.Dal
             string profileListPageContent = webClient.DownloadString(address);
             profileListPage.LoadHtml(profileListPageContent);
             return profileListPage;
+        }
+
+        public static byte[] DownloadImage(this Uri address)
+        {
+            return ObjectFactory.GetInstance<IImageDownloader>().Download(address);
         }
     }
 }

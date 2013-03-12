@@ -46,8 +46,8 @@ namespace Beauty.UI.Specs
         {
             var beauties = ShowBeautyCalls();
 
-            var result = Repository.Find(Repository.UsedCriterias);
-            beauties.Single().Beauties.Should().BeEquivalentTo(result);
+            var result = Repository.Find(Repository.UsedCriterias).Select(x => x.Name).ToArray();
+            beauties.Single().Beauties.Select(x => x.Name).Should().BeEquivalentTo(result);
         }
 
         [Given(@"(.*) beauties aging from (.*) to (.*)")]
@@ -104,10 +104,10 @@ namespace Beauty.UI.Specs
         }
 
 
-        private static IEnumerable<BeautyViewModel> ShowBeautyCalls()
+        private static IEnumerable<MainFormViewModel> ShowBeautyCalls()
         {
             var view = ObjectFactory.GetInstance<IMainView>();
-            IEnumerable<BeautyViewModel> shownBeauties = view.GetArgumentsForCallsMadeOn(x => x.Show(null)).Select(x => (BeautyViewModel)x[0]);
+            IEnumerable<MainFormViewModel> shownBeauties = view.GetArgumentsForCallsMadeOn(x => x.Show(null)).Select(x => (MainFormViewModel)x[0]);
             return shownBeauties;
         }
 
