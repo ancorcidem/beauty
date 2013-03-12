@@ -17,7 +17,7 @@ namespace Beauty.Business.Dal
         {
             IQueryable<Beauty> queryable = _context.Beauties;
             criterias.ToList().ForEach(x => queryable = x.ApplyOn(queryable));
-            return queryable.Select(beauty => beauty);
+            return queryable;
         }
 
         public void Add(Beauty beauty)
