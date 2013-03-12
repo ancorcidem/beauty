@@ -7,11 +7,8 @@ namespace Beauty.Business.Dal
     {
         public ProductionRegistry()
         {
-            CreatePluginFamilyExpression<IBeautyDataFeed> createPluginFamilyExpression = For<IBeautyDataFeed>();
-            ConfigureBeautyDataFeed(createPluginFamilyExpression);
-            ConfigureBeautyFilter();
-
-            For<IBeautyFilter>().Use<BeautyRepository>();
+            For<IBeautyFilter>().Singleton().Use<BeautyRepository>();
+            Forward<IBeautyFilter,IBeautyDataFeed>();
 
             var executionEngineExpression = For<IExecutionEngine>().Singleton();
             ConfigureExecutionEngine(executionEngineExpression);
@@ -20,20 +17,9 @@ namespace Beauty.Business.Dal
             ConfigureSiteBrowser(pluginFamilyExpression);
         }
 
-        protected virtual void ConfigureSiteBrowser(CreatePluginFamilyExpression<ISiteBrowser> pluginFamilyExpression)
+        protected virtual void ConfigureSiteBrowser(CreatePluginFamilyExpression<ISiteBrowser> siteBrowserExpression)
         {
-            pluginFamilyExpression.Use<SiteBrowser>();
-        }
-
-        protected virtual void ConfigureBeautyFilter()
-        {
-            Forward<IBeautyDataFeed, IBeautyFilter>();
-        }
-
-        protected virtual void ConfigureBeautyDataFeed(
-            CreatePluginFamilyExpression<IBeautyDataFeed> createPluginFamilyExpression)
-        {
-            createPluginFamilyExpression.Singleton().Use<BeautyRepository>();
+            siteBrowserExpression.Use<SiteBrowser>();
         }
 
         protected virtual void ConfigureExecutionEngine(
