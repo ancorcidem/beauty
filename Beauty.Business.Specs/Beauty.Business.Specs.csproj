@@ -45,6 +45,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=2.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AutoMapper.2.2.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -98,6 +102,11 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="SiteBrowserMock.cs" />
+    <Compile Include="Specs\BuildOurOwnProfileDatabase.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BuildOurOwnProfileDatabase.feature</DependentUpon>
+    </Compile>
     <Compile Include="Specs\FindNewBeautiesOnline.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -109,6 +118,10 @@
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Resources\intimby.net.har" />
+    <None Include="Specs\BuildOurOwnProfileDatabase.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>BuildOurOwnProfileDatabase.feature.cs</LastGenOutput>
+    </None>
     <None Include="Specs\FindNewBeautiesOnline.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>FindNewBeautiesOnline.feature.cs</LastGenOutput>

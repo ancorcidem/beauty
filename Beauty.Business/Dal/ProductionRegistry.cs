@@ -1,8 +1,3 @@
-using System;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
-using System.Net;
 using StructureMap.Configuration.DSL;
 using StructureMap.Configuration.DSL.Expressions;
 
@@ -21,11 +16,13 @@ namespace Beauty.Business.Dal
             CreatePluginFamilyExpression<ISiteBrowser> pluginFamilyExpression = For<ISiteBrowser>();
             ConfigureSiteBrowser(pluginFamilyExpression);
 
-            CreatePluginFamilyExpression<IImageDownloader> createPluginFamilyExpression = For<IImageDownloader>().Singleton();
+            CreatePluginFamilyExpression<IImageDownloader> createPluginFamilyExpression =
+                For<IImageDownloader>().Singleton();
             ConfigureImageDownloader(createPluginFamilyExpression);
         }
 
-        protected virtual void ConfigureImageDownloader(CreatePluginFamilyExpression<IImageDownloader> createPluginFamilyExpression)
+        protected virtual void ConfigureImageDownloader(
+            CreatePluginFamilyExpression<IImageDownloader> createPluginFamilyExpression)
         {
             createPluginFamilyExpression.Use<ImageDownloader>();
         }
@@ -39,14 +36,6 @@ namespace Beauty.Business.Dal
             CreatePluginFamilyExpression<IExecutionEngine> executionEngineExpression)
         {
             executionEngineExpression.Use<AsyncExecutionEngine>();
-        }
-    }
-
-    public class ImageDownloader : IImageDownloader
-    {
-        public byte[] Download(Uri address)
-        {
-            return new WebClient().DownloadData(address);
         }
     }
 }

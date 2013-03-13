@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using AutoMapper;
 using Beauty.Business.Specs.Properties;
 using HtmlAgilityPack;
 using Newtonsoft.Json.Linq;
@@ -24,12 +25,13 @@ namespace Beauty.Business.Specs
         {
             var result = CreateBeautyPrototype();
             result.Weight = weight.Value;
-            return result;
+            return Mapper.Map<BeautyProfile, Beauty>(result);
+            ;
         }
 
         public Beauty Create(Age age)
         {
-            return CreateHtml(age);
+            return Mapper.Map<BeautyProfile, Beauty>(CreateHtml(age));
         }
 
         private static BeautyProfile CreateBeautyPrototype()

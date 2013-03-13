@@ -35,20 +35,23 @@ namespace Beauty.Business.Dal
         private void QuerySqlRepository(IEnumerable<Criteria> criterias)
         {
             var result = _sqlRepository.Find(criterias);
-            if (Found != null)
-            {
-                Found(this, new BeautyFoundEventArgs {Beauties = result.ToArray()});
-            }
+            Found.Raise(this, new BeautyFoundEventArgs {Beauties = result.ToArray()});
         }
 
         private void QuerySiteRepository(IEnumerable<Criteria> filter)
         {
             var siteRepository = ObjectFactory.GetInstance<BeautySiteRepository>();
             var result = siteRepository.Find(filter);
-            if (Found != null)
+
+            IEnumerable<Beauty> resultFromStorage;
+            lock (_sqlRepository)
             {
-                Found(this, new BeautyFoundEventArgs {Beauties = result.ToArray()});
+                resultFromStorage = _sqlRepository.Find(filter).ToArray();
             }
+
+
+            
+            Found.Raise(this, new BeautyFoundEventArgs {Beauties = result.ToArray()});
         }
 
         public event EventHandler<BeautyFoundEventArgs> Found;

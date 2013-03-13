@@ -10,19 +10,28 @@ namespace Beauty.Business.Dal
 
         public void Commit()
         {
-            _context.SaveChanges();
+            lock (_context)
+            {
+                _context.SaveChanges();
+            }
         }
 
         public IEnumerable<Beauty> Find(IEnumerable<Criteria> criterias)
         {
-            IQueryable<Beauty> queryable = _context.Beauties;
-            criterias.ToList().ForEach(x => queryable = x.ApplyOn(queryable));
-            return queryable;
+            lock (_context)
+            {
+                IQueryable<Beauty> queryable = _context.Beauties;
+                criterias.ToList().ForEach(x => queryable = x.ApplyOn(queryable));
+                return queryable;
+            }
         }
 
         public void Add(Beauty beauty)
         {
-            _context.Beauties.Add(beauty);
+            lock (_context)
+            {
+                _context.Beauties.Add(beauty);
+            }
         }
     }
 }

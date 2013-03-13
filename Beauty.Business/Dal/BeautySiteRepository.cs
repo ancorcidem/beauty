@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using AutoMapper;
 using Beauty.Business.Criterias;
 
 namespace Beauty.Business.Dal
@@ -20,7 +21,8 @@ namespace Beauty.Business.Dal
             criterias.ToList().ForEach(x => x.ApplyOn(nameValueCollection));
 
             var beautiesFromSite = _browser.Select(nameValueCollection);
-            return beautiesFromSite.Select(x => (Beauty) x);
+            
+            return beautiesFromSite.Select(Mapper.Map<BeautyProfile, Beauty>);
         }
     }
 }

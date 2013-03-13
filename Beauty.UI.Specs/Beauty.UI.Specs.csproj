@@ -88,6 +88,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MainScreenFeature.feature</DependentUpon>
     </Compile>
+    <Compile Include="Specs\WhenAutomapperCreated.cs" />
     <Compile Include="UiMockRegistry.cs" />
     <Compile Include="BeautyMockRepository.cs" />
     <Compile Include="BeautyStepDefinition.cs" />

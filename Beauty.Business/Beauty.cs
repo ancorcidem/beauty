@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Drawing;
 using System.IO;
+using AutoMapper;
 
 namespace Beauty.Business
 {
@@ -45,17 +46,5 @@ namespace Beauty.Business
         }
 
         public byte[] AvatarImageBlob { get; set; }
-
-        public static implicit operator Beauty(BeautyProfile profile)
-        {
-            return new Beauty
-                {
-                    Name = profile.Name,
-                    Age = profile.Age,
-                    Weight = profile.Weight,
-                    Uri = profile.Uri,
-                    AvatarImageBlob = profile.AvatarImageBlob,
-                };
-        }
     }
 }

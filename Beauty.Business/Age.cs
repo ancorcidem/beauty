@@ -1,4 +1,6 @@
-﻿namespace Beauty.Business
+﻿using System.Globalization;
+
+namespace Beauty.Business
 {
     public class Age
     {
@@ -55,6 +57,11 @@
         public int Value
         {
             get { return _ageValue; }
+        }
+
+        public override string ToString()
+        {
+            return Value.ToString(CultureInfo.InvariantCulture);
         }
     }
 }

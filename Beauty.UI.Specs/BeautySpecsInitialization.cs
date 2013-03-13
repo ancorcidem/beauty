@@ -12,7 +12,7 @@ namespace Beauty.UI.Specs
         public void InitDrop()
         {
             ObjectFactory.Initialize(x => x.AddRegistry<UiMockRegistry>());
-            Mapper.Initialize(x => x.AddProfile<AutomapperProductionProfile>());
+            Mapper.Initialize(x => x.AddProfile<AutoMapperProductionProfile>());
         }
     }
 }

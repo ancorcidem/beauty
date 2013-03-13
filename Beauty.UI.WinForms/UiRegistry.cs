@@ -1,8 +1,8 @@
-﻿using Beauty.Business.Dal;
+﻿using StructureMap.Configuration.DSL;
 
 namespace Beauty.UI.WinForms
 {
-    public class UiRegistry : ProductionRegistry
+    public class UiRegistry : Registry
     {
         public UiRegistry()
         {

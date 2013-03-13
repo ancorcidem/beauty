@@ -17,13 +17,16 @@ namespace Beauty.Business.Specs
             context.Database.Initialize(true);
 
             ObjectFactory.Initialize(x => x.AddRegistry<BusinessSpecsRegistry>());
+            AutoMapper.Mapper.AddProfile<ProductionAutoMapperProfile>();
         }
+    }
 
-        [BeforeScenario("online")]
-        public void InitOnline()
+    public class ProductionAutoMapperProfile : AutoMapper.Profile
+    {
+        protected override void Configure()
         {
-            
-            
+            base.Configure();
+            CreateMap<BeautyProfile, Beauty>();
         }
     }
 }

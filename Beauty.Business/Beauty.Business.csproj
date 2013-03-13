@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.2.2.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -94,11 +97,13 @@
     <Compile Include="Dal\IBeautyRepository.cs" />
     <Compile Include="Dal\IExecutionEngine.cs" />
     <Compile Include="Dal\IImageDownloader.cs" />
+    <Compile Include="Dal\ImageDownloader.cs" />
     <Compile Include="Dal\ISiteBrowser.cs" />
     <Compile Include="Dal\IUrlEmbeddedCriteria.cs" />
     <Compile Include="Dal\ProductionRegistry.cs" />
     <Compile Include="Dal\SiteBrowser.cs" />
     <Compile Include="Dal\UriExtensions.cs" />
+    <Compile Include="EventExtensions.cs" />
     <Compile Include="Extensions\HtmlDocumentExtensions.cs" />
     <Compile Include="IBeautyDataFeed.cs" />
     <Compile Include="IBeautyFilter.cs" />

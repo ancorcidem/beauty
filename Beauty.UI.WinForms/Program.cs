@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
 using AutoMapper;
+using Beauty.Business.Dal;
+using Bootstrap;
+using Bootstrap.AutoMapper;
+using Bootstrap.StructureMap;
 using StructureMap;
 
 namespace Beauty.UI.WinForms
@@ -16,8 +20,15 @@ namespace Beauty.UI.WinForms
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            ObjectFactory.Initialize(x => x.AddRegistry<UiRegistry>());
-            Mapper.Initialize(x => x.AddProfile<AutomapperProductionProfile>());
+            ObjectFactory.Initialize(x =>
+                {
+                    x.AddRegistry<UiRegistry>();
+                    x.AddRegistry<ProductionRegistry>();
+                });
+
+            //Bootstrapper.With.AutoMapper().And.StructureMap().Start();
+
+            Mapper.Initialize(x => x.AddProfile<AutoMapperProductionProfile>());
 
             ObjectFactory.GetInstance<BeautyRepositoryPresenter>();
             Application.Run(ObjectFactory.GetInstance<MainForm>());
