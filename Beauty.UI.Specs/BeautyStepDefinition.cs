@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Beauty.Business;
 using Beauty.Business.Criterias;
+using Beauty.Specs.Common;
 using Beauty.UI.WinForms;
 using FluentAssertions;
 using Rhino.Mocks;
@@ -85,7 +86,7 @@ namespace Beauty.UI.Specs
             Age age = beautyAge;
             Business.Beauty beauty = Factory.Create(age);
             Repository.Add(beauty);
-            
+
             var beautyDataFeed = ObjectFactory.GetInstance<IBeautyDataFeed>();
 
             beautyDataFeed.Raise(eventSubscription: dataFeed => dataFeed.Found += null, sender: beautyDataFeed,
@@ -107,7 +108,8 @@ namespace Beauty.UI.Specs
         private static IEnumerable<MainFormViewModel> ShowBeautyCalls()
         {
             var view = ObjectFactory.GetInstance<IMainView>();
-            IEnumerable<MainFormViewModel> shownBeauties = view.GetArgumentsForCallsMadeOn(x => x.Show(null)).Select(x => (MainFormViewModel)x[0]);
+            IEnumerable<MainFormViewModel> shownBeauties =
+                view.GetArgumentsForCallsMadeOn(x => x.Show(null)).Select(x => (MainFormViewModel) x[0]);
             return shownBeauties;
         }
 

@@ -43,11 +43,11 @@ namespace Beauty.Business.Dal
             var siteRepository = ObjectFactory.GetInstance<BeautySiteRepository>();
             var result = siteRepository.Find(filter);
 
-            IEnumerable<Beauty> resultFromStorage;
-            lock (_sqlRepository)
-            {
-                resultFromStorage = _sqlRepository.Find(filter).ToArray();
-            }
+            //IEnumerable<Beauty> resultFromStorage;
+            //lock (_sqlRepository)
+            //{
+            //    resultFromStorage = _sqlRepository.Find(filter).ToArray();
+            //}
 
 
             

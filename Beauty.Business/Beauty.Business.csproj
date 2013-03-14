@@ -107,6 +107,7 @@
     <Compile Include="Extensions\HtmlDocumentExtensions.cs" />
     <Compile Include="IBeautyDataFeed.cs" />
     <Compile Include="IBeautyFilter.cs" />
+    <Compile Include="ProductionAutoMapperProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Weight.cs" />
   </ItemGroup>

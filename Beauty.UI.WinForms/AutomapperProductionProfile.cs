@@ -1,12 +1,14 @@
-﻿using AutoMapper;
+﻿using Beauty.Business;
 
 namespace Beauty.UI.WinForms
 {
-    public class AutoMapperProductionProfile : Profile
+    public class AutoMapperProductionProfile : ProductionAutoMapperProfile
     {
         protected override void Configure()
         {
-            CreateMap<Business.Beauty, BeautyView>().ForMember(x => x.Profile, opt => opt.MapFrom(x => x.Uri));
+            base.Configure();
+            CreateMap<Business.Beauty, BeautyView>()
+                .ForMember(x => x.Profile, opt => opt.MapFrom(x => x.Uri));
         }
     }
 }

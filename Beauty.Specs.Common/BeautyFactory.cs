@@ -1,44 +1,48 @@
 ﻿using System;
 using System.Text;
 using AutoMapper;
-using Beauty.Business.Specs.Properties;
+using Beauty.Business;
+using Beauty.Specs.Common.Properties;
 using HtmlAgilityPack;
 using Newtonsoft.Json.Linq;
 
-namespace Beauty.Business.Specs
+namespace Beauty.Specs.Common
 {
     public class BeautyFactory
     {
         private static readonly dynamic GirlProfilePrototype;
+        private int _beautyCount;
 
         static BeautyFactory()
         {
             GirlProfilePrototype = JObject.Parse(Encoding.UTF8.GetString(Resources.GirlPrototype));
         }
 
-        public Beauty Create(Weight weight)
+        public Business.Beauty Create(Weight weight)
         {
             return CreateHtml(weight);
         }
 
-        public Beauty CreateHtml(Weight weight)
+        public Business.Beauty CreateHtml(Weight weight)
         {
             var result = CreateBeautyPrototype();
             result.Weight = weight.Value;
-            return Mapper.Map<BeautyProfile, Beauty>(result);
+            return Mapper.Map<BeautyProfile, Business.Beauty>(result);
             ;
         }
 
-        public Beauty Create(Age age)
+        public Business.Beauty Create(Age age)
         {
-            return Mapper.Map<BeautyProfile, Beauty>(CreateHtml(age));
+            return Mapper.Map<BeautyProfile, Business.Beauty>(CreateHtml(age));
         }
 
-        private static BeautyProfile CreateBeautyPrototype()
+        private BeautyProfile CreateBeautyPrototype()
         {
             var prototype = new HtmlDocument();
             prototype.LoadHtml((string) GirlProfilePrototype.log.entries[0].response.content.text);
-            return new BeautyProfile(prototype, new Uri("http://beauty.com/"));
+            
+            var profileUri = new Uri(string.Format("http://beauty.com/profile/{0}", _beautyCount++));
+            return new BeautyProfile(prototype, profileUri);
         }
 
         public BeautyProfile CreateHtml(Age age)

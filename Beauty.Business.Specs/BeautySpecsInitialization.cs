@@ -20,13 +20,4 @@ namespace Beauty.Business.Specs
             AutoMapper.Mapper.AddProfile<ProductionAutoMapperProfile>();
         }
     }
-
-    public class ProductionAutoMapperProfile : AutoMapper.Profile
-    {
-        protected override void Configure()
-        {
-            base.Configure();
-            CreateMap<BeautyProfile, Beauty>();
-        }
-    }
 }

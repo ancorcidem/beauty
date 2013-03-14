@@ -71,9 +71,9 @@ namespace Beauty.Business
 
         static BeautyProfile()
         {
-            using (Bitmap bitmap = new Bitmap(100, 100))
+            using (var bitmap = new Bitmap(100, 100))
             {
-                using (MemoryStream stream = new MemoryStream())
+                using (var stream = new MemoryStream())
                 {
                     bitmap.Save(stream, ImageFormat.Jpeg);
                     EmptyImage = stream.ToArray();

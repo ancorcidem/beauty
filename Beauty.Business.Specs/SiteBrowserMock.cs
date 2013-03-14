@@ -2,6 +2,7 @@
 using System.Collections.Specialized;
 using System.Linq;
 using Beauty.Business.Dal;
+using Beauty.Specs.Common;
 using StructureMap;
 
 namespace Beauty.Business.Specs

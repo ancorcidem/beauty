@@ -12,6 +12,7 @@ namespace Beauty.UI.Specs.Specs
         {
             Mapper.Initialize(x => x.AddProfile<AutoMapperProductionProfile>());
 
+
             Mapper.AssertConfigurationIsValid();
         }
     }

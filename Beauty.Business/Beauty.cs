@@ -2,7 +2,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Drawing;
 using System.IO;
-using AutoMapper;
 
 namespace Beauty.Business
 {
