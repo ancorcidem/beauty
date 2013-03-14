@@ -67,24 +67,28 @@ namespace Beauty.Business.Specs.Specs
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("update beauty previously found")]
+        [NUnit.Framework.IgnoreAttribute()]
         public virtual void UpdateBeautyPreviouslyFound()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("update beauty previously found", ((string[])(null)));
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("update beauty previously found", new string[] {
+                        "ignore"});
+#line 7
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "id",
                         "url",
                         "name",
-                        "age"});
+                        "age",
+                        "create date"});
             table1.AddRow(new string[] {
                         "1",
                         "http://intimby.net/profile1",
                         "Anita",
-                        "19"});
-#line 7
- testRunner.Given("beauty already found and stored locally:", ((string)(null)), table1, "Given ");
+                        "19",
+                        "10.09.2012"});
+#line 8
+ testRunner.Given("beauty already found|:", ((string)(null)), table1, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "url",
@@ -94,14 +98,34 @@ this.ScenarioSetup(scenarioInfo);
                         "http://intimby.net/profile1",
                         "Marina",
                         "28"});
-#line 10
+#line 11
   testRunner.And("beauty on site:", ((string)(null)), table2, "And ");
-#line 13
- testRunner.When("search for a beauty between 18 and 28 years old", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 14
- testRunner.Then("beauty with id = 1 will have names: Anita, Marina", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("search for a beauty between 18 and 28 years old on 11.09.2012", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                        "name",
+                        "date"});
+            table3.AddRow(new string[] {
+                        "Anita",
+                        "10.09.2012"});
+            table3.AddRow(new string[] {
+                        "Marina",
+                        "11.09.2012"});
 #line 15
-  testRunner.And("beauty with id = 1 will have two ages: 19, 28", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("beauty with id = 1 will have name change history:", ((string)(null)), table3, "Then ");
+#line hidden
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                        "age",
+                        "date"});
+            table4.AddRow(new string[] {
+                        "19",
+                        "10.09.2012"});
+            table4.AddRow(new string[] {
+                        "28",
+                        "11.09.2012"});
+#line 19
+  testRunner.And("beauty with id = 1 will have age change history:", ((string)(null)), table4, "And ");
 #line hidden
             this.ScenarioCleanup();
         }
