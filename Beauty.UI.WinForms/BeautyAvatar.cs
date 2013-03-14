@@ -1,18 +1,18 @@
 ﻿using System.Windows.Forms;
+using Beauty.UI.WinForms.Extensions;
 
 namespace Beauty.UI.WinForms
 {
     public partial class BeautyAvatar : UserControl
     {
-        private readonly Business.Beauty _beauty;
+        private readonly BeautyMainFormViewModel _beauty;
 
-        public BeautyAvatar(Business.Beauty beauty)
+        public BeautyAvatar(BeautyMainFormViewModel beauty)
         {
             InitializeComponent();
 
             _beauty = beauty;
-            avatarPictureBox.Image = _beauty.Avatar;
-
+            avatarPictureBox.Image = _beauty.Avatar.Scale(avatarPictureBox.Size);
         }
     }
 }

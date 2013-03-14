@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Beauty.Business;
 using Beauty.Business.Criterias;
+using Beauty.Business.ServiceBus;
 using Beauty.Specs.Common;
 using Beauty.UI.WinForms;
 using FluentAssertions;
@@ -18,7 +19,7 @@ namespace Beauty.UI.Specs
         [Given(@"beauties aging (.*)")]
         public void GivenBeautiesAging(string ages)
         {
-            ScenarioContext.Current.Set(ObjectFactory.GetInstance<BeautyRepositoryPresenter>());
+            ScenarioContext.Current.Set(ObjectFactory.GetInstance<BeautyMainViewPresenter>());
 
             foreach (Age age in ages.ToArrayOf<int>())
             {
@@ -47,14 +48,18 @@ namespace Beauty.UI.Specs
         {
             var beauties = ShowBeautyCalls();
 
-            var result = Repository.Find(Repository.UsedCriterias).Select(x => x.Name).ToArray();
+            var bus = ObjectFactory.GetInstance<IBus>();
+            var result = new string[]{};
+            bus.Subscribe<BeautyFoundMessage>(msg => result = msg.Beauties.Select(x => x.Name).ToArray());
+            
+            Repository.Find(Repository.UsedCriterias);
             beauties.Single().Beauties.Select(x => x.Name).Should().BeEquivalentTo(result);
         }
 
         [Given(@"(.*) beauties aging from (.*) to (.*)")]
         public void GivenBeautiesAgingFromTo(int beautiesAmount, int ageFrom, int ageTo)
         {
-            ScenarioContext.Current.Set(ObjectFactory.GetInstance<BeautyRepositoryPresenter>());
+            ScenarioContext.Current.Set(ObjectFactory.GetInstance<BeautyMainViewPresenter>());
             while (beautiesAmount != 0)
             {
                 foreach (Age age in Enumerable.Range(ageFrom, ageTo - ageFrom))
@@ -87,11 +92,9 @@ namespace Beauty.UI.Specs
             Business.Beauty beauty = Factory.Create(age);
             Repository.Add(beauty);
 
-            var beautyDataFeed = ObjectFactory.GetInstance<IBeautyDataFeed>();
+            var beautyDataFeed = ObjectFactory.GetInstance<IBus>();
 
-            beautyDataFeed.Raise(eventSubscription: dataFeed => dataFeed.Found += null, sender: beautyDataFeed,
-                                 args:
-                                     new BeautyFoundEventArgs
+            beautyDataFeed.Publish(new BeautyFoundMessage
                                          {
                                              Beauties = new[] {beauty},
                                              Criterias = new Criteria[] {(AgeFrom) beautyAge, (AgeTo) beautyAge}

@@ -4,7 +4,7 @@ using Beauty.Business;
 
 namespace Beauty.UI.WinForms
 {
-    public class BeautyView
+    public class BeautyMainFormViewModel
     {
         public int Id { get; set; }
         public string Name { get; set; }

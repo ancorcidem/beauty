@@ -5,6 +5,6 @@ namespace Beauty.Business.Dal
 {
     public interface IBeautyRepository
     {
-        IEnumerable<Beauty> Find(IEnumerable<Criteria> criterias);
+        void Find(IEnumerable<Criteria> criterias);
     }
 }

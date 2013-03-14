@@ -1,7 +1,7 @@
 ﻿using System;
 using Beauty.Business.Dal;
 
-namespace Beauty.Business.Specs
+namespace Beauty.Specs.Common
 {
     public class SyncExecutionEngine : IExecutionEngine
     {

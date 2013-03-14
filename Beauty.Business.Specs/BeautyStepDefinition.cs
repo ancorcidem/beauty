@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Beauty.Business.Criterias;
-using Beauty.Business.Dal;
+using Beauty.Business.ServiceBus;
 using FluentAssertions;
 using StructureMap;
 using TechTalk.SpecFlow;
@@ -41,13 +41,14 @@ namespace Beauty.Business.Specs
             var filter = ObjectFactory.GetInstance<IBeautyFilter>();
             var criterias = ScenarioContext.Current.Get<List<Criteria>>();
 
-            var beautyDataFeed = ObjectFactory.GetInstance<IBeautyDataFeed>();
+            var beautyDataFeed = ObjectFactory.GetInstance<IBus>();
 
             var actualAges = new List<int>();
-            beautyDataFeed.Found += (sender, args) => actualAges.AddRange(args.Beauties.Select(x => x.Age));
+            beautyDataFeed.Subscribe<BeautyFoundMessage>(
+                message => actualAges.AddRange(message.Beauties.Select(x => x.Age)));
 
             filter.Filter = criterias;
-            
+
             actualAges.Should().BeEquivalentTo(ages.ToArrayOf<int>());
         }
 
@@ -62,15 +63,6 @@ namespace Beauty.Business.Specs
             criterias.Add(weightTo);
 
             ScenarioContext.Current.Set(criterias);
-        }
-
-        [Then(@"found girls should weight (.*)")]
-        public void ThenFoundGirlsShouldWeight(string weight)
-        {
-            var repository = ObjectFactory.GetInstance<IBeautyRepository>();
-            var criterias = ScenarioContext.Current.Get<List<Criteria>>();
-            IEnumerable<int> actualAges = repository.Find(criterias).Select(x => x.Weight);
-            actualAges.Should().BeEquivalentTo(weight.ToArrayOf<int>());
         }
     }
 }

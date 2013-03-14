@@ -1,6 +1,6 @@
-﻿using StructureMap.Configuration.DSL;
+using StructureMap.Configuration.DSL;
 
-namespace Beauty.UI.WinForms
+namespace Beauty.UI.WinForms.StructureMapRegistries
 {
     public class UiRegistry : Registry
     {

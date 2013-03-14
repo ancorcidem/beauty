@@ -48,6 +48,9 @@
     <Reference Include="AutoMapper">
       <HintPath>..\packages\AutoMapper.2.2.1\lib\net40\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="Common.Logging">
+      <HintPath>..\packages\Common.Logging.2.1.2\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -82,7 +85,7 @@
   <ItemGroup>
     <Compile Include="Age.cs" />
     <Compile Include="Beauty.cs" />
-    <Compile Include="BeautyFoundEventArgs.cs" />
+    <Compile Include="BeautyFoundMessage.cs" />
     <Compile Include="BeautyProfile.cs" />
     <Compile Include="Criterias\AgeFrom.cs" />
     <Compile Include="Criterias\AgeTo.cs" />
@@ -105,10 +108,11 @@
     <Compile Include="Dal\UriExtensions.cs" />
     <Compile Include="EventExtensions.cs" />
     <Compile Include="Extensions\HtmlDocumentExtensions.cs" />
-    <Compile Include="IBeautyDataFeed.cs" />
     <Compile Include="IBeautyFilter.cs" />
     <Compile Include="ProductionAutoMapperProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceBus\Bus.cs" />
+    <Compile Include="ServiceBus\IBus.cs" />
     <Compile Include="Weight.cs" />
   </ItemGroup>
   <ItemGroup>

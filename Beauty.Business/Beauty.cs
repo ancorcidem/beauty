@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Drawing;
 using System.IO;
@@ -44,6 +45,7 @@ namespace Beauty.Business
             get { return GetAvatar(); }
         }
 
+        [MaxLength]
         public byte[] AvatarImageBlob { get; set; }
     }
 }

@@ -3,10 +3,10 @@ using Beauty.Business.Criterias;
 
 namespace Beauty.Business
 {
-    public class BeautyFoundEventArgs : EventArgs
+    public class BeautyFoundMessage
     {
         public Criteria[] Criterias { get; set; }
 
-        public Business.Beauty[] Beauties { get; set; }
+        public Beauty[] Beauties { get; set; }
     }
 }

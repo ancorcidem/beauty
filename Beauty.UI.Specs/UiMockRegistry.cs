@@ -1,5 +1,6 @@
 ﻿using Beauty.Business;
 using Beauty.Business.Dal;
+using Beauty.Business.ServiceBus;
 using Beauty.Specs.Common;
 using Beauty.UI.WinForms;
 using Rhino.Mocks;
@@ -18,7 +19,8 @@ namespace Beauty.UI.Specs
 
             For<IMainView>().Singleton().Use(MockRepository.GenerateStub<IMainView>());
             For<IBeautyFilter>().Singleton().Use<BeautyFilterStub>();
-            For<IBeautyDataFeed>().Singleton().Use(MockRepository.GenerateStub<IBeautyDataFeed>());
+            For<IBus>().Singleton().Use<Bus>();
+            For<IExecutionEngine>().Singleton().Use<SyncExecutionEngine>();
             For<IImageDownloader>().Singleton().Use<ImageDownloaderMock>();
         }
     }

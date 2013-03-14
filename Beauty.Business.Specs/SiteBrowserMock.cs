@@ -2,6 +2,7 @@
 using System.Collections.Specialized;
 using System.Linq;
 using Beauty.Business.Dal;
+using Beauty.Business.ServiceBus;
 using Beauty.Specs.Common;
 using StructureMap;
 
@@ -9,9 +10,15 @@ namespace Beauty.Business.Specs
 {
     public class SiteBrowserMock : ISiteBrowser
     {
+        private readonly IBus _bus;
         private readonly List<BeautyProfile> _profiles = new List<BeautyProfile>();
 
-        public IEnumerable<BeautyProfile> Select(NameValueCollection queryParams)
+        public SiteBrowserMock(IBus bus)
+        {
+            _bus = bus;
+        }
+
+        public void Select(NameValueCollection queryParams)
         {
             var ageMinParam = queryParams["AgeMin"];
             var result = Enumerable.Empty<BeautyProfile>();
@@ -25,8 +32,10 @@ namespace Beauty.Business.Specs
             {
                 result = result.Where(x => x.Age <= int.Parse(ageMaxParam));
             }
-
-            return result;
+            foreach (var profile in result)
+            {
+                _bus.Publish(new BeautyProfileFoundMessage {Profile = profile});
+            }
         }
 
         public void RegisterBeauty(Age age)

@@ -4,6 +4,6 @@ namespace Beauty.UI.WinForms
 {
     public class MainFormViewModel
     {
-        public IEnumerable<BeautyView> Beauties { get; set; }
+        public IEnumerable<BeautyMainFormViewModel> Beauties { get; set; }
     }
 }

@@ -1,3 +1,4 @@
+using Beauty.Business.ServiceBus;
 using StructureMap.Configuration.DSL;
 using StructureMap.Configuration.DSL.Expressions;
 
@@ -8,7 +9,6 @@ namespace Beauty.Business.Dal
         public ProductionRegistry()
         {
             For<IBeautyFilter>().Singleton().Use<BeautyRepository>();
-            Forward<IBeautyFilter, IBeautyDataFeed>();
 
             var executionEngineExpression = For<IExecutionEngine>().Singleton();
             ConfigureExecutionEngine(executionEngineExpression);
@@ -19,6 +19,8 @@ namespace Beauty.Business.Dal
             CreatePluginFamilyExpression<IImageDownloader> createPluginFamilyExpression =
                 For<IImageDownloader>().Singleton();
             ConfigureImageDownloader(createPluginFamilyExpression);
+
+            For<IBus>().Singleton().Use<Bus>();
         }
 
         protected virtual void ConfigureImageDownloader(
