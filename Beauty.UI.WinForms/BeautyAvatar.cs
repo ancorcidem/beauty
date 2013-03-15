@@ -14,5 +14,13 @@ namespace Beauty.UI.WinForms
             _beauty = beauty;
             avatarPictureBox.Image = _beauty.Avatar.Scale(avatarPictureBox.Size);
         }
+
+        protected override void OnControlAdded(ControlEventArgs e)
+        {
+            base.OnControlAdded(e);
+            e.Control.MouseDown += (sender, args) => OnMouseDown(args);
+            e.Control.MouseMove += (sender, args) => OnMouseMove(args);
+            e.Control.MouseUp += (sender, args) => OnMouseUp(args);
+        }
     }
 }

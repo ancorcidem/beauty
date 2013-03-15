@@ -54,6 +54,7 @@ namespace Beauty.Business.Dal
                 {
                     _context.Beauties.Add(beauty);
                 }
+                Commit();
             }
         }
     }

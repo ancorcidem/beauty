@@ -12,7 +12,6 @@ namespace Beauty.UI.WinForms
         public MainForm()
         {
             InitializeComponent();
-            dataGridView1.AutoGenerateColumns = true;
 
             _searchParams = new SearchParameters
                 {
@@ -44,13 +43,12 @@ namespace Beauty.UI.WinForms
                 return;
             }
 
-            bindingSource1.DataSource = mainFormViewModel.Beauties;
-
+            panel2.Controls.Clear();
             foreach (var beauty in mainFormViewModel.Beauties)
             {
                 var view = new BeautyAvatar(beauty);
                 view.Draggable(true);
-                flowLayoutPanel1.Controls.Add(view);
+                panel2.Controls.Add(view);
             }
         }
     }

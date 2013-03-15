@@ -28,24 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.ageFromTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.ageToTextBox = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(412, 47);
+            this.button1.Location = new System.Drawing.Point(643, 24);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -56,7 +49,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 55);
+            this.label1.Location = new System.Drawing.Point(172, 34);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(30, 13);
             this.label1.TabIndex = 1;
@@ -64,7 +57,7 @@
             // 
             // ageFromTextBox
             // 
-            this.ageFromTextBox.Location = new System.Drawing.Point(61, 47);
+            this.ageFromTextBox.Location = new System.Drawing.Point(243, 24);
             this.ageFromTextBox.Name = "ageFromTextBox";
             this.ageFromTextBox.Size = new System.Drawing.Size(100, 20);
             this.ageFromTextBox.TabIndex = 2;
@@ -72,7 +65,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 90);
+            this.label2.Location = new System.Drawing.Point(461, 31);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(20, 13);
             this.label2.TabIndex = 1;
@@ -80,48 +73,25 @@
             // 
             // ageToTextBox
             // 
-            this.ageToTextBox.Location = new System.Drawing.Point(61, 83);
+            this.ageToTextBox.Location = new System.Drawing.Point(515, 27);
             this.ageToTextBox.Name = "ageToTextBox";
             this.ageToTextBox.Size = new System.Drawing.Size(100, 20);
             this.ageToTextBox.TabIndex = 2;
             // 
-            // panel1
+            // panel2
             // 
-            this.panel1.Controls.Add(this.dataGridView1);
-            this.panel1.Location = new System.Drawing.Point(13, 107);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(559, 362);
-            this.panel1.TabIndex = 3;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.CausesValidation = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.DataSource = this.bindingSource1;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(559, 362);
-            this.dataGridView1.TabIndex = 1;
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(641, 83);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(804, 625);
-            this.flowLayoutPanel1.TabIndex = 4;
+            this.panel2.AutoScroll = true;
+            this.panel2.Location = new System.Drawing.Point(129, 96);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(765, 612);
+            this.panel2.TabIndex = 4;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1504, 731);
-            this.Controls.Add(this.flowLayoutPanel1);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.ageToTextBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.ageFromTextBox);
@@ -129,9 +99,6 @@
             this.Controls.Add(this.button1);
             this.Name = "MainForm";
             this.Text = "MainForm";
-            this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -144,9 +111,6 @@
         private System.Windows.Forms.TextBox ageFromTextBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox ageToTextBox;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.BindingSource bindingSource1;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Panel panel2;
     }
 }
