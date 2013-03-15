@@ -26,7 +26,7 @@ namespace Beauty.Business.Dal
 
                 var criterias = _filter.ToArray();
                 _executionEngine.Execute(() => _sqlRepository.Find(criterias));
-                //_executionEngine.Execute(() => QuerySiteRepository(criterias));
+                _executionEngine.Execute(() => QuerySiteRepository(criterias));
             }
         }
 
