@@ -2,14 +2,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Beauty.Business.Criterias;
-using Beauty.Business.ServiceBus;
 
 namespace Beauty.Business.Dal
 {
     public class BeautySiteRepository
     {
         private readonly ISiteBrowser _browser;
-        private readonly IBus _bus;
 
         public BeautySiteRepository(ISiteBrowser browser)
         {

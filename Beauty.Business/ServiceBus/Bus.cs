@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using Beauty.Business.Dal;
+using Common.Logging;
 
 namespace Beauty.Business.ServiceBus
 {
     public class Bus : IBus
     {
         private readonly IExecutionEngine _executionEngine;
+        private static readonly ILog Log = LogManager.GetLogger<Bus>();
 
         public Bus(IExecutionEngine executionEngine)
         {
@@ -37,7 +39,17 @@ namespace Beauty.Business.ServiceBus
                 _messageHandlers[message.GetType()].ForEach(x =>
                     {
                         var handler = (Action<TMessage>) x;
-                        _executionEngine.Execute(() => handler(message));
+                        _executionEngine.Execute(() =>
+                            {
+                                try
+                                {
+                                    handler(message);
+                                }
+                                catch (Exception ex)
+                                {
+                                    Log.Error("Handler failed to process message", ex);
+                                }
+                            });
                     });
             }
         }

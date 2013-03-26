@@ -43,7 +43,7 @@ namespace Beauty.UI.WinForms
                 return;
             }
 
-            panel2.Controls.Clear();
+            //panel2.Controls.Clear();
             foreach (var beauty in mainFormViewModel.Beauties)
             {
                 var view = new BeautyAvatar(beauty);
