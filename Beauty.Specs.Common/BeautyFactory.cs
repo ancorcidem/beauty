@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using AutoMapper;
 using Beauty.Business;
@@ -41,7 +43,7 @@ namespace Beauty.Specs.Common
             var prototype = new HtmlDocument();
             prototype.LoadHtml((string) GirlProfilePrototype.log.entries[0].response.content.text);
             
-            var profileUri = new Uri(string.Format("http://beauty.com/profile/{0}", _beautyCount++));
+            var profileUri = new Uri(String.Format("http://beauty.com/profile/{0}", _beautyCount++));
             return new BeautyProfile(prototype, profileUri);
         }
 
@@ -50,6 +52,23 @@ namespace Beauty.Specs.Common
             var result = CreateBeautyPrototype();
             result.Age = age.Value;
             return result;
+        }
+
+        public IEnumerable<Business.Beauty> GenerateByAgeRange(int beautiesAmount, int ageFrom, int ageTo)
+        {
+            while (beautiesAmount != 0)
+            {
+                foreach (Age age in Enumerable.Range(ageFrom, ageTo - ageFrom))
+                {
+                    if (beautiesAmount == 0)
+                    {
+                        break;
+                    }
+
+                    yield return Create(age);
+                    beautiesAmount--;
+                }
+            }
         }
     }
 }

@@ -6,8 +6,8 @@ namespace Beauty.UI.WinForms.StructureMapRegistries
     {
         public UiRegistry()
         {
-            For<IMainView>().Singleton().Use<MainForm>();
-            Forward<IMainView, MainForm>();
+            For<IFilterView>().Singleton().Use<MainForm>();
+            Forward<IFilterView, MainForm>();
         }
     }
 }

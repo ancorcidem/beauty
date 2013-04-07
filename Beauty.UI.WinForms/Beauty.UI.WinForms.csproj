@@ -94,10 +94,11 @@
     <Compile Include="BeautyAvatar.Designer.cs">
       <DependentUpon>BeautyAvatar.cs</DependentUpon>
     </Compile>
-    <Compile Include="BeautyMainFormViewModel.cs" />
+    <Compile Include="BeautyViewModel.cs" />
     <Compile Include="Extensions\ControlExtensions.cs" />
+    <Compile Include="IBeautyGroupView.cs" />
     <Compile Include="MainFormViewModel.cs" />
-    <Compile Include="IMainView.cs" />
+    <Compile Include="IFilterView.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Beauty.Business;
 using Beauty.Business.Criterias;
@@ -30,7 +29,7 @@ namespace Beauty.UI.Specs
         [StepDefinition(@"search for a beauty between (.*) and (.*) years old")]
         public void WhenSearchForABeautyBetweenAndYearsOld(int ageFromValue, int ageToValue)
         {
-            var view = ObjectFactory.GetInstance<IMainView>();
+            var view = ObjectFactory.GetInstance<IFilterView>();
 
             var viewModel = new SearchParameters
                 {
@@ -46,33 +45,18 @@ namespace Beauty.UI.Specs
         [Then(@"found girls should be age of (.*)")]
         public void ThenFoundGirlsShouldBe(string ages)
         {
-            var beauties = ShowBeautyCalls();
-
-            var bus = ObjectFactory.GetInstance<IBus>();
-            var result = new string[]{};
-            bus.Subscribe<BeautyFoundMessage>(msg => result = msg.Beauties.Select(x => x.Name).ToArray());
-            
-            Repository.Find(Repository.UsedCriterias);
-            beauties.Single().Beauties.Select(x => x.Name).Should().BeEquivalentTo(result);
+            var agesOnStage = ObjectFactory.GetInstance<BeautyGroupViewMock>().BeautiesOnTheStage.Select(x => x.Age);
+            agesOnStage.Should().BeEquivalentTo(ages.ToArrayOf<int>().Select(x => (Age) x));
         }
 
         [Given(@"(.*) beauties aging from (.*) to (.*)")]
         public void GivenBeautiesAgingFromTo(int beautiesAmount, int ageFrom, int ageTo)
         {
             ScenarioContext.Current.Set(ObjectFactory.GetInstance<BeautyMainViewPresenter>());
-            while (beautiesAmount != 0)
-            {
-                foreach (Age age in Enumerable.Range(ageFrom, ageTo - ageFrom))
-                {
-                    if (beautiesAmount == 0)
-                    {
-                        break;
-                    }
 
-                    Repository.Add(Factory.Create(age));
-                    beautiesAmount--;
-                }
-            }
+            var beautiesToAdd = Factory.GenerateByAgeRange(beautiesAmount, ageFrom, ageTo);
+
+            Repository.Add(beautiesToAdd.ToArray());
         }
 
         private static BeautyMockRepository Repository
@@ -95,31 +79,26 @@ namespace Beauty.UI.Specs
             var beautyDataFeed = ObjectFactory.GetInstance<IBus>();
 
             beautyDataFeed.Publish(new BeautyFoundMessage
-                                         {
-                                             Beauties = new[] {beauty},
-                                             Criterias = new Criteria[] {(AgeFrom) beautyAge, (AgeTo) beautyAge}
-                                         });
+                {
+                    Beauties = new[] {beauty},
+                    Criterias = new Criteria[] {(AgeFrom) beautyAge, (AgeTo) beautyAge}
+                });
         }
 
         [Then(@"the new beauty aging (.*) should be found")]
         public void ThenTheNewBeautyAgingShouldBeFound(int age)
         {
-            ShowBeautyCalls().Last().Beauties.Select(x => x.Age == age).Should().NotBeEmpty("age {0} not found", age);
+            var shownBeautyAges = ObjectFactory.GetInstance<BeautyGroupViewMock>().BeautiesOnTheStage.Select(x => x.Age);
+            shownBeautyAges.Contains(age).Should().Be(true, "age {0} not found", age);
         }
 
-
-        private static IEnumerable<MainFormViewModel> ShowBeautyCalls()
-        {
-            var view = ObjectFactory.GetInstance<IMainView>();
-            IEnumerable<MainFormViewModel> shownBeauties =
-                view.GetArgumentsForCallsMadeOn(x => x.Show(null)).Select(x => (MainFormViewModel) x[0]);
-            return shownBeauties;
-        }
 
         [Then(@"all (.*) beauties should be found")]
         public void ThenAllBeautiesShouldBeFound(int beautiesAmountToFind)
         {
-            ShowBeautyCalls().Single().Beauties.Count().Should().Be(beautiesAmountToFind);
+            ObjectFactory.GetInstance<BeautyGroupViewMock>().BeautiesOnTheStage.Length
+                         .Should()
+                         .Be(beautiesAmountToFind);
         }
     }
 }

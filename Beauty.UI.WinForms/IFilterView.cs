@@ -2,9 +2,8 @@
 
 namespace Beauty.UI.WinForms
 {
-    public interface IMainView
+    public interface IFilterView
     {
         event EventHandler<FilterChangeEventArgs> FilterChanged;
-        void Show(MainFormViewModel mainFormViewModel);
     }
 }

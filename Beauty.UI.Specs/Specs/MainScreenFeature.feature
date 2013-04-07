@@ -12,7 +12,13 @@ Scenario: show new results arrived from feed
 	Given beauties aging 21, 25, 54, 18
 		And search for a beauty between 18 and 24 years old
 	When a new beauty aging 22 added on site
-	Then the new beauty aging 22 should be found
+	Then found girls should be age of 18, 21, 22
+
+Scenario: hide old results that do not mach updated criteria
+	Given beauties aging 21, 25, 54, 18
+		And search for a beauty between 18 and 25 years old
+	When search for a beauty between 19 and 25 years old
+	Then found girls should be age of 21, 25
 
 Scenario: find by age returns many results
 	Given 500 beauties aging from 18 to 40

@@ -47,5 +47,10 @@ namespace Beauty.Business
 
         [MaxLength]
         public byte[] AvatarImageBlob { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("Id: {0}, {1}, {2} y.o.", Id, Name, Age);
+        }
     }
 }

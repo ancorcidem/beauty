@@ -1,5 +1,4 @@
-﻿using System;
-using Beauty.Business.Criterias;
+﻿using Beauty.Business.Criterias;
 
 namespace Beauty.Business
 {

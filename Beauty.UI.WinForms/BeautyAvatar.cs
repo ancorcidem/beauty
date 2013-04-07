@@ -5,9 +5,9 @@ namespace Beauty.UI.WinForms
 {
     public partial class BeautyAvatar : UserControl
     {
-        private readonly BeautyMainFormViewModel _beauty;
+        private readonly BeautyViewModel _beauty;
 
-        public BeautyAvatar(BeautyMainFormViewModel beauty)
+        public BeautyAvatar(BeautyViewModel beauty)
         {
             InitializeComponent();
 

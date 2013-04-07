@@ -5,7 +5,7 @@ using Beauty.UI.WinForms.Extensions;
 
 namespace Beauty.UI.WinForms
 {
-    public partial class MainForm : Form, IMainView
+    public partial class MainForm : Form, IFilterView
     {
         private readonly SearchParameters _searchParams;
 

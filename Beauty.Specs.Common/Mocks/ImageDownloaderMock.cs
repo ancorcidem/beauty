@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using Beauty.Business.Dal;
 
-namespace Beauty.Specs.Common
+namespace Beauty.Specs.Common.Mocks
 {
     public class ImageDownloaderMock : IImageDownloader
     {

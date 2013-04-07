@@ -18,11 +18,6 @@ namespace Beauty.UI.Specs
             _bus = bus;
         }
 
-        public IEnumerable<Criteria> UsedCriterias
-        {
-            get { return _usedCriterias; }
-        }
-
         public void Find(IEnumerable<Criteria> criterias)
         {
             var usedCriterias = criterias.ToArray();
@@ -34,9 +29,14 @@ namespace Beauty.UI.Specs
             _bus.Publish(new BeautyFoundMessage {Beauties = queryable.ToArray(), Criterias = criterias.ToArray()});
         }
 
-        public void Add(Business.Beauty beauty)
+        public void Add(params Business.Beauty[] beauties)
         {
-            _dbSet.Add(beauty);
+            _dbSet.AddRange(beauties);
+        }
+
+        public void SendBeautyFoundMessageBasedOnUsedCriterias()
+        {
+            Find(_usedCriterias);
         }
     }
 }

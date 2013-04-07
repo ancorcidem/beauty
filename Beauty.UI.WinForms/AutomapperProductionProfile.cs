@@ -7,7 +7,7 @@ namespace Beauty.UI.WinForms
         protected override void Configure()
         {
             base.Configure();
-            CreateMap<Business.Beauty, BeautyMainFormViewModel>()
+            CreateMap<Business.Beauty, BeautyViewModel>()
                 .ForMember(x => x.Profile, opt => opt.MapFrom(x => x.Uri));
         }
     }

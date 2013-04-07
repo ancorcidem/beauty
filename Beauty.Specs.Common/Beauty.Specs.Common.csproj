@@ -83,7 +83,7 @@
     <Compile Include="BeautyFactory.cs" />
     <Compile Include="FakeDb\FakeDbSet.cs" />
     <Compile Include="FakeDb\InMemoryDbSet.cs" />
-    <Compile Include="ImageDownloaderMock.cs" />
+    <Compile Include="Mocks\ImageDownloaderMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
