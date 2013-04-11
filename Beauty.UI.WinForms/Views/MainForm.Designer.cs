@@ -1,4 +1,4 @@
-﻿namespace Beauty.UI.WinForms
+namespace Beauty.UI.WinForms.Views
 {
     partial class MainForm
     {

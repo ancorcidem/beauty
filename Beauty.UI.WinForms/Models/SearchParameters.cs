@@ -1,6 +1,6 @@
-﻿using Beauty.Business.Criterias;
+using Beauty.Business.Criterias;
 
-namespace Beauty.UI.WinForms
+namespace Beauty.UI.WinForms.Models
 {
     public class SearchParameters
     {

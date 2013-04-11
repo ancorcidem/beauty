@@ -1,6 +1,7 @@
-﻿using System;
+using System;
+using Beauty.UI.WinForms.Models;
 
-namespace Beauty.UI.WinForms
+namespace Beauty.UI.WinForms.Views
 {
     public class FilterChangeEventArgs : EventArgs
     {

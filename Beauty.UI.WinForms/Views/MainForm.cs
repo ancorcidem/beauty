@@ -1,9 +1,10 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 using Beauty.Business;
 using Beauty.UI.WinForms.Extensions;
+using Beauty.UI.WinForms.Models;
 
-namespace Beauty.UI.WinForms
+namespace Beauty.UI.WinForms.Views
 {
     public partial class MainForm : Form, IFilterView
     {

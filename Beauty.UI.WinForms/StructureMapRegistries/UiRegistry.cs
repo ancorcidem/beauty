@@ -1,3 +1,4 @@
+using Beauty.UI.WinForms.Views;
 using StructureMap.Configuration.DSL;
 
 namespace Beauty.UI.WinForms.StructureMapRegistries

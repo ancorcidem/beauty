@@ -5,11 +5,14 @@ using Beauty.Business.Criterias;
 using Beauty.Business.ServiceBus;
 using Beauty.Specs.Common;
 using Beauty.UI.WinForms;
+using Beauty.UI.WinForms.Models;
+using Beauty.UI.WinForms.Presenters;
+using Beauty.UI.WinForms.Views;
 using FluentAssertions;
 using Rhino.Mocks;
 using StructureMap;
 using TechTalk.SpecFlow;
-using FilterChangeEventArgs = Beauty.UI.WinForms.FilterChangeEventArgs;
+using FilterChangeEventArgs = Beauty.UI.WinForms.Views.FilterChangeEventArgs;
 
 namespace Beauty.UI.Specs
 {

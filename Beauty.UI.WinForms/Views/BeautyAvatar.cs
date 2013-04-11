@@ -1,7 +1,8 @@
-﻿using System.Windows.Forms;
+using System.Windows.Forms;
 using Beauty.UI.WinForms.Extensions;
+using Beauty.UI.WinForms.Models;
 
-namespace Beauty.UI.WinForms
+namespace Beauty.UI.WinForms.Views
 {
     public partial class BeautyAvatar : UserControl
     {

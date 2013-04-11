@@ -6,6 +6,8 @@ using Beauty.Business.ServiceBus;
 using Beauty.Specs.Common;
 using Beauty.Specs.Common.Mocks;
 using Beauty.UI.WinForms;
+using Beauty.UI.WinForms.Models;
+using Beauty.UI.WinForms.Views;
 using Rhino.Mocks;
 using StructureMap.Configuration.DSL;
 

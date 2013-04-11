@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using System.Drawing;
 using Beauty.Business;
 
-namespace Beauty.UI.WinForms
+namespace Beauty.UI.WinForms.Models
 {
     public class BeautyViewModel
     {

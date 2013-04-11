@@ -1,4 +1,6 @@
-﻿namespace Beauty.UI.WinForms
+using Beauty.UI.WinForms.Models;
+
+namespace Beauty.UI.WinForms.Views
 {
     public interface IBeautyGroupView
     {

@@ -1,4 +1,5 @@
 ﻿using Beauty.Business;
+using Beauty.UI.WinForms.Models;
 
 namespace Beauty.UI.WinForms
 {

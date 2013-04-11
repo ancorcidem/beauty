@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 
-namespace Beauty.UI.WinForms
+namespace Beauty.UI.WinForms.Views
 {
     public interface IFilterView
     {

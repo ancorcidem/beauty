@@ -1,11 +1,14 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using Beauty.Business;
 using Beauty.Business.Criterias;
 using Beauty.Business.ServiceBus;
+using Beauty.UI.WinForms.Models;
+using Beauty.UI.WinForms.Views;
+using FilterChangeEventArgs = Beauty.UI.WinForms.Views.FilterChangeEventArgs;
 
-namespace Beauty.UI.WinForms
+namespace Beauty.UI.WinForms.Presenters
 {
     public class BeautyMainViewPresenter
     {
