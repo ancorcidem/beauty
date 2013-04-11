@@ -14,7 +14,8 @@ namespace Beauty.UI.WinForms
         private readonly IBeautyFilter _beautyFilter;
         private readonly IBus _bus;
 
-        private readonly List<BeautyViewModel> _shownBeauties = new List<BeautyViewModel>();
+        private readonly Dictionary<Business.Beauty, BeautyViewModel> _shownBeauties =
+            new Dictionary<Business.Beauty, BeautyViewModel>();
 
         public BeautyMainViewPresenter(IBeautyGroupView groupdView, IFilterView filterView, IBeautyFilter beautyFilter,
                                        IBus bus)
@@ -25,31 +26,56 @@ namespace Beauty.UI.WinForms
             _bus = bus;
             _bus.Subscribe<BeautyFoundMessage>(Handler);
 
-            _filterView.FilterChanged += OnFilterChanged;
+            _filterView.FilterChanged += OnFilterViewChanged;
+            _beautyFilter.Changed += OnBeautyFilterChanged;
         }
 
-        private void OnFilterChanged(object sender, FilterChangeEventArgs eventArgs)
+        private void OnBeautyFilterChanged(object sender, Business.FilterChangeEventArgs eventArgs)
         {
-            var beauties2Hide = _shownBeauties.Where(model => !(model.Age.Value <= int.Parse(eventArgs.SearchParameters.AgeTo.Value) && model.Age.Value >= int.Parse(eventArgs.SearchParameters.AgeFrom.Value)));
+            var beauties2Hide = SelectBeauties2Hide(eventArgs.NewFilter);
+
+            var views2Hide = new List<BeautyViewModel>();
+
+            foreach (var beauty in beauties2Hide)
+            {
+                views2Hide.Add(_shownBeauties[beauty]);
+                _shownBeauties.Remove(beauty);
+            }
 
             _groupdView.Hide(new MainFormViewModel
-            {
-                Beauties = beauties2Hide
-            });
+                {
+                    Beauties = views2Hide
+                });
+        }
 
-            _beautyFilter.Filter = new Criteria[] { eventArgs.SearchParameters.AgeFrom, eventArgs.SearchParameters.AgeTo };
+        private IEnumerable<Business.Beauty> SelectBeauties2Hide(IEnumerable<Criteria> newFilter)
+        {
+            var beautiesThatWillBeShown = _shownBeauties.Keys.AsQueryable();
+            newFilter.ToList().ForEach(x => beautiesThatWillBeShown = x.ApplyOn(beautiesThatWillBeShown));
+
+            var beauties2Hide = _shownBeauties.Keys.Where(beauty => !beautiesThatWillBeShown.Contains(beauty)).ToArray();
+            return beauties2Hide;
+        }
+
+        private void OnFilterViewChanged(object sender, FilterChangeEventArgs eventArgs)
+        {
+            _beautyFilter.Filter = new Criteria[] {eventArgs.SearchParameters.AgeFrom, eventArgs.SearchParameters.AgeTo};
         }
 
         private void Handler(BeautyFoundMessage message)
         {
-            var beautyViews =
-                Mapper.Map<IEnumerable<Business.Beauty>, IEnumerable<BeautyViewModel>>(message.Beauties).ToArray();
-
-            _shownBeauties.AddRange(beautyViews);
+            foreach (var beauty in message.Beauties)
+            {
+                var beautyView = Mapper.Map<Business.Beauty, BeautyViewModel>(beauty);
+                if (!_shownBeauties.ContainsKey(beauty))
+                {
+                    _shownBeauties[beauty] = beautyView;
+                }
+            }
 
             var model = new MainFormViewModel
                 {
-                    Beauties = beautyViews
+                    Beauties = _shownBeauties.Values
                 };
 
             _groupdView.Show(model);

@@ -88,7 +88,7 @@ this.ScenarioSetup(scenarioInfo);
                         "19",
                         "10.09.2012"});
 #line 8
- testRunner.Given("beauty already found|:", ((string)(null)), table1, "Given ");
+ testRunner.Given("beauty already found:", ((string)(null)), table1, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "url",

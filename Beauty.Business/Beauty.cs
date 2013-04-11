@@ -6,8 +6,36 @@ using System.IO;
 
 namespace Beauty.Business
 {
-    public class Beauty
+    public class Beauty : IEquatable<Beauty>
     {
+        public bool Equals(Beauty other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return Id == other.Id && string.Equals(Name, other.Name) && Age == other.Age && Weight == other.Weight && string.Equals(Url, other.Url);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != GetType()) return false;
+            return Equals((Beauty) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hashCode = Id;
+                hashCode = (hashCode*397) ^ (Name != null ? Name.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ Age;
+                hashCode = (hashCode*397) ^ Weight;
+                hashCode = (hashCode*397) ^ (Url != null ? Url.GetHashCode() : 0);
+                return hashCode;
+            }
+        }
+
         public int Id { get; set; }
 
         public string Name { get; set; }

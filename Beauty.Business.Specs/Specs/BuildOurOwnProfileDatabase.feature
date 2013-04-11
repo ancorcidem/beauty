@@ -5,7 +5,7 @@
 
 @ignore
 Scenario: update beauty previously found
-	Given beauty already found|:
+	Given beauty already found:
 		| id | url                         | name  | age | create date |
 		| 1  | http://intimby.net/profile1 | Anita | 19  | 10.09.2012  |
 		And beauty on site:

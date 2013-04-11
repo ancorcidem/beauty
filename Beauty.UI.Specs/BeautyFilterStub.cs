@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Beauty.Business;
 using Beauty.Business.Criterias;
 
@@ -21,8 +22,11 @@ namespace Beauty.UI.Specs
             set
             {
                 _filter = value;
+                Changed.Raise(this, new FilterChangeEventArgs(value));
                 _beautyMockRepository.Find(Filter);
             }
         }
+
+        public event EventHandler<FilterChangeEventArgs> Changed;
     }
 }

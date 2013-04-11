@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Beauty.Business.Criterias;
 using StructureMap;
@@ -24,11 +25,15 @@ namespace Beauty.Business.Dal
                 _filter.Clear();
                 _filter.AddRange(value);
 
+                Changed.Raise(this, new FilterChangeEventArgs(value));
+
                 var criterias = _filter.ToArray();
                 _executionEngine.Execute(() => _sqlRepository.Find(criterias));
                 _executionEngine.Execute(() => QuerySiteRepository(criterias));
             }
         }
+
+        public event EventHandler<FilterChangeEventArgs> Changed;
 
         private void QuerySiteRepository(IEnumerable<Criteria> filter)
         {

@@ -9,6 +9,7 @@ using FluentAssertions;
 using Rhino.Mocks;
 using StructureMap;
 using TechTalk.SpecFlow;
+using FilterChangeEventArgs = Beauty.UI.WinForms.FilterChangeEventArgs;
 
 namespace Beauty.UI.Specs
 {
