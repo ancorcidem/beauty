@@ -50,14 +50,17 @@
     <Reference Include="AutoMapper">
       <HintPath>..\packages\AutoMapper.2.2.1\lib\net40\AutoMapper.dll</HintPath>
     </Reference>
-    <Reference Include="Bootstrapper">
-      <HintPath>..\packages\Bootstrapper.2.0.3.6\lib\Net40\Bootstrapper.dll</HintPath>
+    <Reference Include="Bootstrapper, Version=2.0.3.7, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Bootstrapper.2.0.3.7\lib\Net40\Bootstrapper.dll</HintPath>
     </Reference>
-    <Reference Include="Bootstrapper.AutoMapper">
-      <HintPath>..\packages\Bootstrapper.AutoMapper.2.0.3.6\lib\Net40\Bootstrapper.AutoMapper.dll</HintPath>
+    <Reference Include="Bootstrapper.AutoMapper, Version=2.0.3.7, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Bootstrapper.AutoMapper.2.0.3.7\lib\Net40\Bootstrapper.AutoMapper.dll</HintPath>
     </Reference>
-    <Reference Include="Bootstrapper.StructureMap">
-      <HintPath>..\packages\Bootstrapper.StructureMap.2.0.3.6\lib\Net40\Bootstrapper.StructureMap.dll</HintPath>
+    <Reference Include="Bootstrapper.StructureMap, Version=2.0.3.8, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Bootstrapper.StructureMap.2.0.3.8\lib\Net40\Bootstrapper.StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="CommonServiceLocator.StructureMapAdapter.Unofficial">
       <HintPath>..\packages\CommonServiceLocator.StructureMapAdapter.Unofficial.2.6.4.1\lib\Net40\CommonServiceLocator.StructureMapAdapter.Unofficial.dll</HintPath>
@@ -89,6 +92,7 @@
   <ItemGroup>
     <Compile Include="AutomapperProductionProfile.cs" />
     <Compile Include="Extensions\ControlExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Models\BeautyViewModel.cs" />
     <Compile Include="Models\MainFormViewModel.cs" />
     <Compile Include="Models\SearchParameters.cs" />

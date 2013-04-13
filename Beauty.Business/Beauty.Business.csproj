@@ -94,6 +94,7 @@
     <Compile Include="Criterias\WeightTo.cs" />
     <Compile Include="Dal\AsyncExecutionEngine.cs" />
     <Compile Include="Dal\BeautyDbContext.cs" />
+    <Compile Include="Dal\BeautyDbInitializer.cs" />
     <Compile Include="Dal\BeautyRepository.cs" />
     <Compile Include="Dal\BeautySiteRepository.cs" />
     <Compile Include="Dal\BeautySqlRepository.cs" />
@@ -103,12 +104,13 @@
     <Compile Include="Dal\ImageDownloader.cs" />
     <Compile Include="Dal\ISiteBrowser.cs" />
     <Compile Include="Dal\IUrlEmbeddedCriteria.cs" />
-    <Compile Include="Dal\ProductionRegistry.cs" />
     <Compile Include="Dal\SiteBrowser.cs" />
+    <Compile Include="Dal\StructureMap\ProductionRegistry.cs" />
     <Compile Include="Dal\UriExtensions.cs" />
     <Compile Include="EventExtensions.cs" />
     <Compile Include="Extensions\HtmlDocumentExtensions.cs" />
     <Compile Include="IBeautyFilter.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProductionAutoMapperProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceBus\Bus.cs" />

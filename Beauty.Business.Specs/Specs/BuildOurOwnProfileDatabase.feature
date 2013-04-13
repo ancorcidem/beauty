@@ -4,7 +4,7 @@
 	I want to see beauty change history
 
 @ignore
-Scenario: update beauty previously found
+Scenario: update beauty previously found when matched by profile url
 	Given beauty already found:
 		| id | url                         | name  | age | create date |
 		| 1  | http://intimby.net/profile1 | Anita | 19  | 10.09.2012  |

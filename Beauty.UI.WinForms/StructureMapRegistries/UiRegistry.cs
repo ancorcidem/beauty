@@ -9,6 +9,7 @@ namespace Beauty.UI.WinForms.StructureMapRegistries
         {
             For<IFilterView>().Singleton().Use<MainForm>();
             Forward<IFilterView, MainForm>();
+            Forward<IFilterView, IBeautyGroupView>();
         }
     }
 }

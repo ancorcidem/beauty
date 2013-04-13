@@ -7,7 +7,18 @@ using System.Windows.Forms;
 
 namespace Beauty.UI.WinForms.Extensions
 {
-    public static class ControlExtension
+    public static class ThreadSafeExtension
+    {
+        public static void InvokeSafe(this Control theControl, Action actionToInvoke)
+        {
+            if (theControl.InvokeRequired)
+            {
+                theControl.Invoke(actionToInvoke);
+            }
+        }
+    }
+
+    public static class DraggableExtension
     {
         // TKey is control to drag, TValue is a flag used while dragging
         private static readonly Dictionary<Control, bool> Draggables =
@@ -18,9 +29,9 @@ namespace Beauty.UI.WinForms.Extensions
         /// <summary>
         /// Enabling/disabling dragging for control
         /// </summary>
-        public static void Draggable(this Control control, bool Enable)
+        public static void Draggable(this Control control, bool enable)
         {
-            if (Enable)
+            if (enable)
             {
                 // enable drag feature
                 if (Draggables.ContainsKey(control))
@@ -89,10 +100,8 @@ namespace Beauty.UI.WinForms.Extensions
 
             if (img.Width > maxWidth || img.Height > maxHeight)
             {
-                double scaleW, scaleH;
-
-                scaleW = maxWidth/(double) img.Width;
-                scaleH = maxHeight/(double) img.Height;
+                double scaleW = maxWidth/(double) img.Width;
+                double scaleH = maxHeight/(double) img.Height;
 
                 scale = scaleW < scaleH ? scaleW : scaleH;
             }

@@ -1,9 +1,11 @@
 using System.Data.Entity;
 using Beauty.Business.Dal;
+using Beauty.Business.StructureMap;
 using StructureMap;
 using TechTalk.SpecFlow;
+using BeautyDbInitializer = Beauty.Business.Specs.BeautyDbInitializer;
 
-namespace Beauty.Business.Specs
+namespace Beauty.Business
 {
     [Binding]
     public class BeautySpecsInitialization

@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Beauty.Business.Specs.Specs
+namespace Beauty.Business.Specs
 {
     using TechTalk.SpecFlow;
     
@@ -80,6 +80,27 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.When("search for a beauty between 18 and 24 years old", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
  testRunner.Then("found girls should be age of 18, 19, 23", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("find new beauties by weight")]
+        [NUnit.Framework.IgnoreAttribute()]
+        [NUnit.Framework.CategoryAttribute("online")]
+        public virtual void FindNewBeautiesByWeight()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("find new beauties by weight", new string[] {
+                        "online",
+                        "ignore"});
+#line 14
+this.ScenarioSetup(scenarioInfo);
+#line 15
+ testRunner.Given("some beauties who present on site only with weight 47, 105", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 16
+ testRunner.When("search for beauty who weight between 45 and 60 kg", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 17
+ testRunner.Then("girls found on site should have weight 47", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

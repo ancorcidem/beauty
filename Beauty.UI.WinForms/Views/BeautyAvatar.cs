@@ -16,6 +16,11 @@ namespace Beauty.UI.WinForms.Views
             avatarPictureBox.Image = _beauty.Avatar.Scale(avatarPictureBox.Size);
         }
 
+        public BeautyViewModel Model
+        {
+            get { return _beauty; }
+        }
+
         protected override void OnControlAdded(ControlEventArgs e)
         {
             base.OnControlAdded(e);

@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Beauty.Business.Specs.Specs
+namespace Beauty.Business.Specs
 {
     using TechTalk.SpecFlow;
     
@@ -66,11 +66,11 @@ namespace Beauty.Business.Specs.Specs
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("update beauty previously found")]
+        [NUnit.Framework.DescriptionAttribute("update beauty previously found when matched by profile url")]
         [NUnit.Framework.IgnoreAttribute()]
-        public virtual void UpdateBeautyPreviouslyFound()
+        public virtual void UpdateBeautyPreviouslyFoundWhenMatchedByProfileUrl()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("update beauty previously found", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("update beauty previously found when matched by profile url", new string[] {
                         "ignore"});
 #line 7
 this.ScenarioSetup(scenarioInfo);

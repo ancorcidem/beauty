@@ -78,7 +78,7 @@ namespace Beauty.UI.WinForms.Presenters
 
             var model = new MainFormViewModel
                 {
-                    Beauties = _shownBeauties.Values
+                    Beauties = _shownBeauties.Values.ToArray()
                 };
 
             _groupdView.Show(model);

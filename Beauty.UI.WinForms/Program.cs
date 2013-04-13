@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Data.Entity;
 using System.Windows.Forms;
-using AutoMapper;
 using Beauty.Business.Dal;
 using Beauty.UI.WinForms.Presenters;
-using Beauty.UI.WinForms.StructureMapRegistries;
 using Beauty.UI.WinForms.Views;
 using Bootstrap;
 using Bootstrap.AutoMapper;
@@ -13,10 +10,6 @@ using StructureMap;
 
 namespace Beauty.UI.WinForms
 {
-    public class BeautyDbInitializer : DropCreateDatabaseIfModelChanges<BeautyDbContext>
-    {
-    }
-
     internal static class Program
     {
         /// <summary>
@@ -29,15 +22,15 @@ namespace Beauty.UI.WinForms
             Application.SetCompatibleTextRenderingDefault(false);
             new BeautyDbInitializer().InitializeDatabase(new BeautyDbContext());
 
-            ObjectFactory.Initialize(x =>
-                {
-                    x.AddRegistry<UiRegistry>();
-                    x.AddRegistry<ProductionRegistry>();
-                });
+            //ObjectFactory.Initialize(x =>
+            //    {
+            //        x.AddRegistry<UiRegistry>();
+            //        x.AddRegistry<ProductionRegistry>();
+            //    });
 
-            //Bootstrapper.With.AutoMapper().And.StructureMap().Start();
+            Bootstrapper.With.AutoMapper().And.StructureMap().UsingObjectFactory().Start();
 
-            Mapper.Initialize(x => x.AddProfile<AutoMapperProductionProfile>());
+            //Mapper.Initialize(x => x.AddProfile<AutoMapperProductionProfile>());
 
             ObjectFactory.GetInstance<BeautyMainViewPresenter>();
             Application.Run(ObjectFactory.GetInstance<MainForm>());
