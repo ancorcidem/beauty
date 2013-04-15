@@ -6,7 +6,7 @@ using Beauty.Business.ServiceBus;
 using Beauty.Specs.Common;
 using StructureMap;
 
-namespace Beauty.Business.Specs
+namespace Beauty.Business
 {
     public class SiteBrowserMock : ISiteBrowser
     {
@@ -40,8 +40,17 @@ namespace Beauty.Business.Specs
 
         public void RegisterBeauty(Age age)
         {
-            var factory = ObjectFactory.GetInstance<BeautyFactory>();
-            _profiles.Add(factory.CreateHtml(age));
+            _profiles.Add(BeautyFactory.CreateHtml(age));
+        }
+
+        private static BeautyFactory BeautyFactory
+        {
+            get { return ObjectFactory.GetInstance<BeautyFactory>(); }
+        }
+
+        public void Register(IEnumerable<Beauty> beauties)
+        {
+            _profiles.AddRange(beauties.Select(x => BeautyFactory.CreateHtml(x)));
         }
     }
 }

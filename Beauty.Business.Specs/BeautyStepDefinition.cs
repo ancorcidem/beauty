@@ -7,7 +7,7 @@ using FluentAssertions;
 using StructureMap;
 using TechTalk.SpecFlow;
 
-namespace Beauty.Business.Specs
+namespace Beauty.Business
 {
     [Binding]
     public class BeautyStepDefinition
@@ -25,30 +25,19 @@ namespace Beauty.Business.Specs
         [When(@"search for a beauty between (.*) and (.*) years old")]
         public void WhenSearchForABeautyBetweenAndYearsOld(int ageFromValue, int ageToValue)
         {
-            var criterias = new List<Criteria>();
-            AgeFrom ageFrom = ageFromValue;
-            criterias.Add(ageFrom);
+            ScenarioContext.Current.Set(new List<BeautyFoundMessage>());
+            var bus = ObjectFactory.GetInstance<IBus>();
+            bus.Subscribe<BeautyFoundMessage>(x => ScenarioContext.Current.Get<List<BeautyFoundMessage>>().Add(x));
 
-            AgeTo ageTo = ageToValue;
-            criterias.Add(ageTo);
+            var filter = ObjectFactory.GetInstance<IBeautyFilter>();
 
-            ScenarioContext.Current.Set(criterias);
+            filter.Filter = new Criteria[] { (AgeFrom)ageFromValue, (AgeTo)ageToValue };
         }
 
         [Then(@"found girls should be age of (.*)")]
         public void ThenFoundGirlsShouldBe(string ages)
         {
-            var filter = ObjectFactory.GetInstance<IBeautyFilter>();
-            var criterias = ScenarioContext.Current.Get<List<Criteria>>();
-
-            var beautyDataFeed = ObjectFactory.GetInstance<IBus>();
-
-            var actualAges = new List<int>();
-            beautyDataFeed.Subscribe<BeautyFoundMessage>(
-                message => actualAges.AddRange(message.Beauties.Select(x => x.Age)));
-
-            filter.Filter = criterias;
-
+            var actualAges = ScenarioContext.Current.Get<List<BeautyFoundMessage>>().SelectMany(x => x.Beauties).Select(x => x.Age);
             actualAges.Should().BeEquivalentTo(ages.ToArrayOf<int>());
         }
 

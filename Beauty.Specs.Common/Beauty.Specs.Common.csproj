@@ -96,6 +96,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SearchByParameters.feature</DependentUpon>
     </Compile>
+    <Compile Include="SpecsCommonAutoMapperProfile.cs" />
     <Compile Include="StringTransformationExtensions.cs" />
     <Compile Include="SyncExecutionEngine.cs" />
   </ItemGroup>

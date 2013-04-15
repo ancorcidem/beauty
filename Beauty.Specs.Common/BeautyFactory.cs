@@ -30,7 +30,6 @@ namespace Beauty.Specs.Common
             var result = CreateBeautyPrototype();
             result.Weight = weight.Value;
             return Mapper.Map<BeautyProfile, Business.Beauty>(result);
-            ;
         }
 
         public Business.Beauty Create(Age age)
@@ -69,6 +68,12 @@ namespace Beauty.Specs.Common
                     beautiesAmount--;
                 }
             }
+        }
+
+        public BeautyProfile CreateHtml(Business.Beauty beautyPrototype)
+        {
+            var result = CreateBeautyPrototype();
+            return Mapper.Map(beautyPrototype, result);
         }
     }
 }

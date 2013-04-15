@@ -1,6 +1,5 @@
 ﻿using Beauty.Business.Dal;
 using Beauty.Business.Dal.StructureMap;
-using Beauty.Business.Specs;
 using Beauty.Specs.Common;
 using Beauty.Specs.Common.Mocks;
 using StructureMap.Configuration.DSL.Expressions;

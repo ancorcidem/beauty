@@ -89,6 +89,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BeautiesWillBeKeptLocallySteps.cs" />
     <Compile Include="BeautySpecsInitialization.cs" />
     <Compile Include="BeautyDbInitializer.cs" />
     <Compile Include="BeautyStepDefinition.cs" />

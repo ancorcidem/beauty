@@ -2,7 +2,7 @@
 using StructureMap;
 using TechTalk.SpecFlow;
 
-namespace Beauty.Business.Specs
+namespace Beauty.Business
 {
     [Binding]
     public class CrawlingForNewGirlsStepDefinition
