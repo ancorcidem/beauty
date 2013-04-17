@@ -48,7 +48,7 @@ namespace Beauty.Business
             var beautiesExpected = table.CreateSet<Beauty>();
 
             var beautiesFound = ScenarioContext.Current.Get<List<BeautyFoundMessage>>().SelectMany(x => x.Beauties);
-            beautiesFound.Should().BeEquivalentTo(beautiesExpected);
+            beautiesFound.Select(x => x.Url).Should().BeEquivalentTo(beautiesExpected.Select(x => x.Url));
         }
 
     }

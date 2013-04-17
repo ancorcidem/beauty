@@ -19,11 +19,16 @@ namespace Beauty.Business.Dal
 
         private void NewProfileFound(BeautyProfileFoundMessage msg)
         {
-            var beauty = Mapper.Map<BeautyProfile, Beauty>(msg.Profile);
-            Add(beauty);
 
-            _bus.Publish(new BeautyFoundMessage { Beauties = new[]{beauty}, Criterias = new Criteria[]{} });
+            lock (_context)
+            {
+                var beauty = Mapper.Map<BeautyProfile, Beauty>(msg.Profile);
 
+                if (_context.Beauties.Any(x => x.Url == beauty.Url)) return;
+                Add(beauty);
+
+                _bus.Publish(new BeautyFoundMessage { Beauties = new[] { beauty }, Criterias = new Criteria[] { } });
+            }
         }
 
         public void Commit()
