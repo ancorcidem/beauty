@@ -58,8 +58,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Bootstrapper.AutoMapper.2.0.3.7\lib\Net40\Bootstrapper.AutoMapper.dll</HintPath>
     </Reference>
-    <Reference Include="Bootstrapper.StructureMap, Version=2.0.3.8, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Bootstrapper.StructureMap">
       <HintPath>..\packages\Bootstrapper.StructureMap.2.0.3.8\lib\Net40\Bootstrapper.StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="CommonServiceLocator.StructureMapAdapter.Unofficial">
@@ -72,9 +71,8 @@
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\packages\CommonServiceLocator.StructureMapAdapter.Unofficial.2.6.4.1\lib\Net40\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
-    <Reference Include="StructureMap, Version=2.6.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Bootstrapper.StructureMap.2.0.3.6\lib\Net40\StructureMap.dll</HintPath>
+    <Reference Include="StructureMap">
+      <HintPath>..\packages\CommonServiceLocator.StructureMapAdapter.Unofficial.2.6.4.1\lib\Net40\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
