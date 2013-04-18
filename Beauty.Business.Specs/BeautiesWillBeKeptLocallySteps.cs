@@ -30,18 +30,6 @@ namespace Beauty.Business
             siteBrowser.Register(table.CreateSet<Beauty>());
         }
 
-        [Then(@"beauty with id = (.*) will have name change history:")]
-        public void ThenBeautyWithIdWillHaveNameChangeHistory(int beautyId, Table table)
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Then(@"beauty with id = (.*) will have age change history:")]
-        public void ThenBeautyWithIdWillHaveAgeChangeHistory(int p0, Table table)
-        {
-            ScenarioContext.Current.Pending();
-        }
-
         [Then(@"found girls should be:")]
         public void ThenFoundGirlsShouldBe(Table table)
         {
