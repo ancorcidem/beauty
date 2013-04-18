@@ -7,7 +7,7 @@ namespace Beauty.UI.WinForms.Models
         public SearchParameters()
         {
             AgeFrom = 19;
-            AgeTo = 25;
+            AgeTo = 19;
         }
 
         public AgeFrom AgeFrom { get; set; }
