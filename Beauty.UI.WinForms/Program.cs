@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Windows.Forms;
 using Beauty.Business.Dal;
 using Beauty.UI.WinForms.Presenters;
@@ -20,17 +21,9 @@ namespace Beauty.UI.WinForms
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            new BeautyDbInitializer().InitializeDatabase(new BeautyDbContext());
-
-            //ObjectFactory.Initialize(x =>
-            //    {
-            //        x.AddRegistry<UiRegistry>();
-            //        x.AddRegistry<ProductionRegistry>();
-            //    });
+            Database.SetInitializer(new BeautyDbInitializer());
 
             Bootstrapper.With.AutoMapper().And.StructureMap().UsingObjectFactory().Start();
-
-            //Mapper.Initialize(x => x.AddProfile<AutoMapperProductionProfile>());
 
             ObjectFactory.GetInstance<BeautyMainViewPresenter>();
             Application.Run(ObjectFactory.GetInstance<MainForm>());

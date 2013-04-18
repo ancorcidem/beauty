@@ -90,9 +90,9 @@ namespace Beauty.Business
             }
             var avatarUrl = new Uri(SiteBrowser.BaseUri, imageNode.Attributes["src"].Value);
 
-            byte[] result = avatarUrl.DownloadImage();
-            LoadAvatarImageBlob = () => result;
-            return result;
+            var imageBlob = avatarUrl.DownloadImage();
+            LoadAvatarImageBlob = () => imageBlob;
+            return imageBlob;
         }
 
         private Func<byte[]> LoadAvatarImageBlob;

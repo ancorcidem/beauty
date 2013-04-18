@@ -28,7 +28,9 @@ namespace Beauty.UI.WinForms.Views
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.avatarPictureBox = new System.Windows.Forms.PictureBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.avatarPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,5 +57,6 @@ namespace Beauty.UI.WinForms.Views
         #endregion
 
         private System.Windows.Forms.PictureBox avatarPictureBox;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

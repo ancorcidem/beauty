@@ -14,6 +14,7 @@ namespace Beauty.UI.WinForms.Views
 
             _beauty = beauty;
             avatarPictureBox.Image = _beauty.Avatar.Scale(avatarPictureBox.Size);
+            toolTip1.SetToolTip(avatarPictureBox, _beauty.Name);
         }
 
         public BeautyViewModel Model

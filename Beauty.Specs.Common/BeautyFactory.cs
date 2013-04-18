@@ -7,6 +7,7 @@ using Beauty.Business;
 using Beauty.Specs.Common.Properties;
 using HtmlAgilityPack;
 using Newtonsoft.Json.Linq;
+using Beauty = Beauty.Business.Beauty;
 
 namespace Beauty.Specs.Common
 {
@@ -29,12 +30,16 @@ namespace Beauty.Specs.Common
         {
             var result = CreateBeautyPrototype();
             result.Weight = weight.Value;
-            return Mapper.Map<BeautyProfile, Business.Beauty>(result);
+            var beauty = Mapper.Map<BeautyProfile, Business.Beauty>(result);
+            beauty.Id = _beautyCount++;
+            return beauty;
         }
 
         public Business.Beauty Create(Age age)
         {
-            return Mapper.Map<BeautyProfile, Business.Beauty>(CreateHtml(age));
+            var beauty = Mapper.Map<BeautyProfile, Business.Beauty>(CreateHtml(age));
+            beauty.Id = _beautyCount;
+            return beauty;
         }
 
         private BeautyProfile CreateBeautyPrototype()

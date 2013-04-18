@@ -7,7 +7,7 @@ namespace Beauty.Business.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(BeautyDbContext context)

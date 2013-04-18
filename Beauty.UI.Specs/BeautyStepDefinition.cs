@@ -9,6 +9,7 @@ using Beauty.UI.WinForms.Models;
 using Beauty.UI.WinForms.Presenters;
 using Beauty.UI.WinForms.Views;
 using FluentAssertions;
+using NUnit.Framework;
 using Rhino.Mocks;
 using StructureMap;
 using TechTalk.SpecFlow;
@@ -50,7 +51,7 @@ namespace Beauty.UI.Specs
         public void ThenFoundGirlsShouldBe(string ages)
         {
             var agesOnStage = ObjectFactory.GetInstance<BeautyGroupViewMock>().BeautiesOnTheStage.Select(x => x.Age);
-            agesOnStage.Should().BeEquivalentTo(ages.ToArrayOf<int>().Select(x => (Age) x));
+            Assert.That(agesOnStage, Is.EquivalentTo(ages.ToArrayOf<int>().Select(x => (Age)x)));
         }
 
         [Given(@"(.*) beauties aging from (.*) to (.*)")]

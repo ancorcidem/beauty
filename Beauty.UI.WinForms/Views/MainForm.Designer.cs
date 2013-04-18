@@ -33,12 +33,14 @@ namespace Beauty.UI.WinForms.Views
             this.ageFromTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.ageToTextBox = new System.Windows.Forms.TextBox();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(643, 24);
+            this.button1.Location = new System.Drawing.Point(539, 11);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -49,7 +51,7 @@ namespace Beauty.UI.WinForms.Views
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(172, 34);
+            this.label1.Location = new System.Drawing.Point(68, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(30, 13);
             this.label1.TabIndex = 1;
@@ -57,7 +59,7 @@ namespace Beauty.UI.WinForms.Views
             // 
             // ageFromTextBox
             // 
-            this.ageFromTextBox.Location = new System.Drawing.Point(243, 24);
+            this.ageFromTextBox.Location = new System.Drawing.Point(139, 11);
             this.ageFromTextBox.Name = "ageFromTextBox";
             this.ageFromTextBox.Size = new System.Drawing.Size(100, 20);
             this.ageFromTextBox.TabIndex = 2;
@@ -65,7 +67,7 @@ namespace Beauty.UI.WinForms.Views
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(461, 31);
+            this.label2.Location = new System.Drawing.Point(357, 18);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(20, 13);
             this.label2.TabIndex = 1;
@@ -73,7 +75,7 @@ namespace Beauty.UI.WinForms.Views
             // 
             // ageToTextBox
             // 
-            this.ageToTextBox.Location = new System.Drawing.Point(515, 27);
+            this.ageToTextBox.Location = new System.Drawing.Point(411, 14);
             this.ageToTextBox.Name = "ageToTextBox";
             this.ageToTextBox.Size = new System.Drawing.Size(100, 20);
             this.ageToTextBox.TabIndex = 2;
@@ -81,26 +83,38 @@ namespace Beauty.UI.WinForms.Views
             // panel2
             // 
             this.panel2.AutoScroll = true;
-            this.panel2.Location = new System.Drawing.Point(129, 96);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(765, 612);
+            this.panel2.Size = new System.Drawing.Size(1504, 731);
             this.panel2.TabIndex = 4;
+            // 
+            // panel1
+            // 
+            this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.ageToTextBox);
+            this.panel1.Controls.Add(this.ageFromTextBox);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1504, 90);
+            this.panel1.TabIndex = 5;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1504, 731);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.ageToTextBox);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.ageFromTextBox);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
             this.Name = "MainForm";
             this.Text = "MainForm";
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -111,6 +125,7 @@ namespace Beauty.UI.WinForms.Views
         private System.Windows.Forms.TextBox ageFromTextBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox ageToTextBox;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.FlowLayoutPanel panel2;
+        private System.Windows.Forms.Panel panel1;
     }
 }

@@ -6,7 +6,7 @@ using Beauty.Business.Criterias;
 using Beauty.Business.ServiceBus;
 using Beauty.UI.WinForms.Models;
 using Beauty.UI.WinForms.Views;
-using FilterChangeEventArgs = Beauty.UI.WinForms.Views.FilterChangeEventArgs;
+using FilterChangeEventArgs = Beauty.Business.FilterChangeEventArgs;
 
 namespace Beauty.UI.WinForms.Presenters
 {
@@ -33,7 +33,7 @@ namespace Beauty.UI.WinForms.Presenters
             _beautyFilter.Changed += OnBeautyFilterChanged;
         }
 
-        private void OnBeautyFilterChanged(object sender, Business.FilterChangeEventArgs eventArgs)
+        private void OnBeautyFilterChanged(object sender, FilterChangeEventArgs eventArgs)
         {
             var beauties2Hide = SelectBeauties2Hide(eventArgs.NewFilter);
 
@@ -60,7 +60,7 @@ namespace Beauty.UI.WinForms.Presenters
             return beauties2Hide;
         }
 
-        private void OnFilterViewChanged(object sender, FilterChangeEventArgs eventArgs)
+        private void OnFilterViewChanged(object sender, Views.FilterChangeEventArgs eventArgs)
         {
             _beautyFilter.Filter = new Criteria[] {eventArgs.SearchParameters.AgeFrom, eventArgs.SearchParameters.AgeTo};
         }
@@ -69,19 +69,17 @@ namespace Beauty.UI.WinForms.Presenters
         {
             foreach (var beauty in message.Beauties)
             {
+                if (_shownBeauties.ContainsKey(beauty)) continue;
+
                 var beautyView = Mapper.Map<Business.Beauty, BeautyViewModel>(beauty);
-                if (!_shownBeauties.ContainsKey(beauty))
-                {
-                    _shownBeauties[beauty] = beautyView;
-                }
+                _shownBeauties[beauty] = beautyView;
+                var model = new MainFormViewModel
+                    {
+                        Beauties = new[] { beautyView }
+                    };
+
+                _groupdView.Show(model);
             }
-
-            var model = new MainFormViewModel
-                {
-                    Beauties = _shownBeauties.Values.ToArray()
-                };
-
-            _groupdView.Show(model);
         }
     }
 }

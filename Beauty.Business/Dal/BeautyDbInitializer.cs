@@ -2,7 +2,7 @@
 
 namespace Beauty.Business.Dal
 {
-    public class BeautyDbInitializer : DropCreateDatabaseIfModelChanges<BeautyDbContext>
+    public class BeautyDbInitializer : DropCreateDatabaseAlways<BeautyDbContext>
     {
     }
 }
